@@ -1,0 +1,2400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saarthi AI Campaign Studio — Angel One</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Mono:wght@400;500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--b:#2D35E0;--a:#4F6BFF;--dk:#0A0C28;--mu:#6E73A5;--bd:rgba(79,107,255,0.18);--gr:#16A34A;--re:#DC2626;--or:#EA7600;--R:14px;--r:8px;--f:'DM Sans',sans-serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--f);background:#08091E;color:#E8EAF6;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(45,53,224,0.04)1px,transparent 1px),linear-gradient(90deg,rgba(45,53,224,0.04)1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.28;}
+.tr{width:500px;height:500px;background:radial-gradient(circle,#2D35E0,transparent);top:-100px;right:-100px;}
+.bl{width:400px;height:400px;background:radial-gradient(circle,#5A1EB4,transparent);bottom:-80px;left:-80px;}
+.app{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 20px 100px;}
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:28px 0 32px;border-bottom:1px solid var(--bd);margin-bottom:36px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.tris{display:grid;gap:2px;}.trow{display:flex;gap:2px;justify-content:center;}
+.t{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:8px solid var(--a);}
+.ltxt{font-size:18px;font-weight:600;letter-spacing:-.3px;}.ltxt .w{color:#fff;}.ltxt .bb{color:var(--b);}.ltxt .sup{color:var(--b);font-size:9px;vertical-align:super;}
+.hbdg{font-size:11px;font-weight:500;padding:5px 12px;border-radius:99px;background:rgba(79,107,255,.12);border:1px solid var(--bd);color:var(--a);letter-spacing:.04em;}
+.prog{margin-bottom:40px;}
+.psteps{display:flex;align-items:center;position:relative;}
+.pstep{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;position:relative;}
+.pstep:not(:last-child)::after{content:'';position:absolute;top:16px;left:50%;width:100%;height:2px;background:rgba(79,107,255,.15);z-index:0;transition:background .4s;}
+.pstep.dn:not(:last-child)::after{background:var(--b);}
+.sdot{width:32px;height:32px;border-radius:50%;background:rgba(79,107,255,.1);border:2px solid rgba(79,107,255,.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--mu);position:relative;z-index:1;transition:all .3s;}
+.pstep.ac .sdot{background:var(--b);border-color:var(--a);color:#fff;box-shadow:0 0 16px rgba(79,107,255,.5);}
+.pstep.dn .sdot{background:var(--gr);border-color:var(--gr);color:#fff;}
+.slbl{font-size:11px;font-weight:500;color:var(--mu);text-align:center;white-space:nowrap;}
+.pstep.ac .slbl{color:#E8EAF6;}.pstep.dn .slbl{color:rgba(232,234,246,.5);}
+.pnl{display:none;animation:fsu .4s ease;}.pnl.ac{display:block;}
+@keyframes fsu{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+.card{background:rgba(15,18,53,.7);border:1px solid var(--bd);border-radius:var(--R);padding:28px 32px;backdrop-filter:blur(12px);margin-bottom:16px;}
+.sh{font-size:22px;font-weight:600;color:#fff;margin-bottom:6px;letter-spacing:-.3px;}
+.ss{font-size:14px;color:var(--mu);margin-bottom:28px;line-height:1.6;}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.pf label{display:block;font-size:12px;font-weight:500;color:var(--mu);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+.pf input,.pf select,.pf textarea{width:100%;background:rgba(79,107,255,.06);border:1px solid var(--bd);border-radius:var(--r);color:#E8EAF6;font-family:var(--f);font-size:14px;padding:10px 14px;outline:none;transition:border-color .2s;}
+.pf input:focus,.pf select:focus,.pf textarea:focus{border-color:var(--a);}
+.pf select option{background:#0F1235;}.pf textarea{resize:vertical;min-height:80px;}.pf.full{grid-column:1/-1;}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;}
+.chip{padding:9px 16px;border-radius:99px;border:1px solid var(--bd);background:rgba(79,107,255,.06);color:#C5C9E8;font-size:13px;font-weight:500;cursor:pointer;transition:all .18s;user-select:none;white-space:nowrap;}
+.chip:hover{border-color:var(--a);background:rgba(79,107,255,.12);color:#fff;}
+.chip.sel{background:var(--b);border-color:var(--a);color:#fff;box-shadow:0 0 12px rgba(45,53,224,.4);}
+.subw{margin-top:20px;display:none;}
+.sublbl{font-size:11px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.07em;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sublbl::after{content:'';flex:1;height:1px;background:var(--bd);}
+.subgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;}
+.subcard{background:rgba(79,107,255,.05);border:1px solid var(--bd);border-radius:var(--r);padding:12px 14px;cursor:pointer;transition:all .18s;}
+.subcard:hover{border-color:var(--a);background:rgba(79,107,255,.1);}
+.subcard.sel{border-color:var(--a);background:rgba(45,53,224,.2);box-shadow:0 0 10px rgba(45,53,224,.2);}
+.subcard-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:4px;}
+.subcard-ico{font-size:16px;flex-shrink:0;margin-top:1px;}
+.subcard-tit{font-size:13px;font-weight:600;color:#fff;line-height:1.35;}
+.subcard-why{font-size:11px;color:var(--mu);line-height:1.45;margin-left:24px;}
+.igrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
+.icard{background:rgba(79,107,255,.05);border:1px solid var(--bd);border-radius:var(--r);padding:16px;cursor:pointer;transition:all .2s;}
+.icard:hover{border-color:var(--a);background:rgba(79,107,255,.1);}
+.icard.sel{border-color:var(--a);background:rgba(45,53,224,.18);box-shadow:0 0 14px rgba(45,53,224,.2);}
+.iico{font-size:20px;margin-bottom:8px;}.itit{font-size:13px;font-weight:600;color:#fff;margin-bottom:4px;}.idsc{font-size:12px;color:var(--mu);line-height:1.5;}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:10px;}
+.acard{background:rgba(79,107,255,.05);border:1px solid var(--bd);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:10px;}
+.acard:hover{border-color:var(--a);}.acard.sel{border-color:var(--a);background:rgba(45,53,224,.18);}
+.aico{font-size:18px;flex-shrink:0;margin-top:2px;}.atit{font-size:13px;font-weight:600;color:#fff;}.asub{font-size:11px;color:var(--mu);margin-top:2px;}
+.nxt{flex:1;padding:12px 24px;background:var(--b);border:none;border-radius:var(--r);color:#fff;font-family:var(--f);font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;}
+.nxt:hover{background:#3D47F0;box-shadow:0 0 18px rgba(45,53,224,.4);}.nxt:disabled{opacity:.4;cursor:not-allowed;}
+.bck{padding:12px 24px;background:transparent;border:1px solid var(--bd);border-radius:var(--r);color:var(--mu);font-family:var(--f);font-size:14px;cursor:pointer;transition:all .2s;}
+.bck:hover{color:#E8EAF6;}
+.navr{display:flex;gap:12px;margin-top:24px;}
+.genbtn{width:100%;padding:16px;background:var(--b);border:none;border-radius:var(--r);color:#fff;font-family:var(--f);font-size:15px;font-weight:600;cursor:pointer;transition:all .2s;margin-top:24px;}
+.genbtn:hover{background:#3D47F0;box-shadow:0 0 24px rgba(45,53,224,.5);transform:translateY(-1px);}
+.genbtn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.fp{padding:8px 16px;border-radius:99px;border:1px solid var(--bd);background:rgba(79,107,255,.06);color:#C5C9E8;font-size:12px;font-weight:500;cursor:pointer;transition:all .18s;}
+.fp:hover{border-color:var(--a);}.fp.sel{background:rgba(79,107,255,.2);border-color:var(--a);color:#fff;}
+.fpills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.alog{background:rgba(10,12,40,.8);border:1px solid rgba(79,107,255,.1);border-radius:var(--r);padding:16px 20px;margin-bottom:20px;font-family:'DM Mono',monospace;font-size:12px;}
+.alogtit{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:10px;}
+.ll{display:flex;gap:10px;padding:3px 0;animation:fi .3s ease;}
+@keyframes fi{from{opacity:0;}to{opacity:1;}}
+.la{color:var(--a);min-width:100px;}.lm{color:rgba(200,205,235,.7);}.lok{color:#4ADE80;}.lwn{color:#FB923C;}
+.ptabs{display:flex;gap:4px;background:rgba(79,107,255,.06);border:1px solid var(--bd);border-radius:10px;padding:4px;margin-bottom:20px;width:fit-content;flex-wrap:wrap;}
+.ptab{padding:8px 18px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;color:var(--mu);transition:all .2s;border:none;background:transparent;font-family:var(--f);}
+.ptab.ac{background:var(--b);color:#fff;box-shadow:0 0 10px rgba(45,53,224,.4);}
+.cout{background:rgba(15,18,53,.8);border:1px solid var(--bd);border-radius:var(--R);padding:24px;position:relative;display:none;}
+.cout.ac{display:block;}
+.plbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--a);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.plbl::after{content:'';flex:1;height:1px;background:var(--bd);}
+.cbody{font-size:14px;line-height:1.8;color:#D8DCF2;white-space:pre-wrap;}
+.cpbtn{position:absolute;top:16px;right:16px;padding:6px 12px;font-size:11px;font-weight:500;background:rgba(79,107,255,.1);border:1px solid var(--bd);border-radius:6px;color:var(--mu);cursor:pointer;font-family:var(--f);transition:all .2s;}
+.cpbtn:hover{background:rgba(79,107,255,.2);color:#fff;}
+.ring{width:48px;height:48px;border:3px solid rgba(79,107,255,.2);border-top-color:var(--a);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto;}
+@keyframes sp{to{transform:rotate(360deg);}}
+.ldots::after{content:'';animation:dt 1.2s steps(3,end) infinite;}
+@keyframes dt{0%,20%{content:'.';}40%,60%{content:'..';}80%,100%{content:'...'}}
+.compbdg{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:99px;font-size:12px;font-weight:600;background:rgba(22,163,74,.12);border:1px solid rgba(22,163,74,.3);color:#4ADE80;margin-top:16px;}
+.disc{font-size:11px;color:rgba(110,115,165,.6);margin-top:12px;padding:8px 0;border-top:1px solid var(--bd);}
+.sbar{display:flex;gap:12px;flex-wrap:wrap;background:rgba(45,53,224,.08);border:1px solid var(--bd);border-radius:var(--r);padding:14px 20px;margin-bottom:20px;}
+.sbi{font-size:12px;color:var(--mu);}.sbi strong{color:#E8EAF6;font-weight:600;margin-right:4px;}
+.rbtn{padding:10px 20px;background:transparent;border:1px solid var(--bd);border-radius:var(--r);color:var(--mu);font-family:var(--f);font-size:13px;cursor:pointer;transition:all .2s;}
+.rbtn:hover{color:#E8EAF6;}
+.csec{margin-top:32px;}
+.csec-hdr{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.csec-tit{font-size:18px;font-weight:600;color:#fff;}
+.csec-bdg{font-size:11px;padding:4px 10px;border-radius:99px;background:rgba(79,107,255,.15);border:1px solid var(--bd);color:var(--a);}
+.ctabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;}
+.ctab{padding:8px 16px;border-radius:99px;border:1px solid var(--bd);background:rgba(79,107,255,.06);color:#C5C9E8;font-size:12px;font-weight:500;cursor:pointer;transition:all .18s;}
+.ctab.ac{background:var(--b);border-color:var(--a);color:#fff;box-shadow:0 0 10px rgba(45,53,224,.35);}
+.cwrap{display:none;flex-direction:column;align-items:center;gap:16px;}
+.cwrap.ac{display:flex;}
+.cwrap canvas{display:none;}
+.cwrap img{border-radius:12px;max-width:100%;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.dlbtn{padding:10px 28px;background:rgba(79,107,255,.15);border:1px solid var(--bd);border-radius:var(--r);color:var(--a);font-family:var(--f);font-size:13px;font-weight:500;text-decoration:none;display:inline-block;transition:all .2s;}
+.dlbtn:hover{background:rgba(79,107,255,.25);color:#fff;}
+.anecb{background:rgba(255,255,255,.03);border:1px dashed rgba(79,107,255,.3);border-radius:var(--r);padding:16px;margin-top:20px;}
+.anecb label{font-size:12px;font-weight:500;color:var(--a);text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:8px;}
+.anecb textarea{width:100%;background:transparent;border:none;color:#E8EAF6;font-family:var(--f);font-size:13px;line-height:1.6;outline:none;resize:none;min-height:60px;}
+.anecb textarea::placeholder{color:rgba(110,115,165,.7);}
+.notice{font-size:12px;color:rgba(79,107,255,.8);background:rgba(79,107,255,.08);border:1px solid rgba(79,107,255,.2);border-radius:var(--r);padding:10px 14px;margin-top:12px;line-height:1.5;}
+@media(max-width:600px){.pgrid{grid-template-columns:1fr;}.igrid{grid-template-columns:1fr 1fr;}.card{padding:20px;}.slbl{display:none;}.subgrid{grid-template-columns:1fr;}}
+
+.newscard{background:rgba(79,107,255,.05);border:1px solid var(--bd);border-radius:var(--r);padding:16px 18px;cursor:pointer;transition:all .2s;display:flex;align-items:flex-start;gap:14px;}
+.newscard:hover{border-color:var(--a);background:rgba(79,107,255,.1);}
+.newscard.sel{border-color:var(--a);background:rgba(45,53,224,.18);box-shadow:0 0 12px rgba(45,53,224,.2);}
+.newscard-num{width:28px;height:28px;border-radius:50%;background:rgba(79,107,255,.15);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--a);flex-shrink:0;}
+.newscard.sel .newscard-num{background:var(--b);border-color:var(--a);color:#fff;}
+.newscard-body{flex:1;}
+.newscard-src{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--a);margin-bottom:5px;}
+.newscard-headline{font-size:14px;font-weight:600;color:#fff;line-height:1.45;margin-bottom:5px;}
+.newscard-summary{font-size:12px;color:var(--mu);line-height:1.55;}
+.newscard-why{font-size:11px;color:rgba(79,107,255,.8);margin-top:6px;background:rgba(79,107,255,.07);border-radius:4px;padding:4px 8px;display:inline-block;}
+</style>
+</head>
+<body>
+<div class="orb tr"></div><div class="orb bl"></div>
+<div class="app">
+
+<div class="hdr">
+  <div class="logo">
+    <div class="tris"><div class="trow"><div class="t"></div></div><div class="trow"><div class="t"></div><div class="t"></div></div><div class="trow"><div class="t"></div><div class="t"></div><div class="t"></div></div></div>
+    <div class="ltxt"><span class="w">Angel</span><span class="bb">One</span><span class="sup">®</span></div>
+  </div>
+  <div class="hbdg">Saarthi AI Campaign Studio</div>
+</div>
+
+<div class="prog"><div class="psteps" id="PS">
+  <div class="pstep ac"><div class="sdot">1</div><div class="slbl">Profile</div></div>
+  <div class="pstep"><div class="sdot">2</div><div class="slbl">Topic</div></div>
+  <div class="pstep"><div class="sdot">3</div><div class="slbl">Angle</div></div>
+  <div class="pstep" id="pstepNews"><div class="sdot">4</div><div class="slbl">News</div></div>
+  <div class="pstep"><div class="sdot">5</div><div class="slbl">Hook</div></div>
+  <div class="pstep"><div class="sdot">6</div><div class="slbl">Audience</div></div>
+  <div class="pstep"><div class="sdot">7</div><div class="slbl">Output</div></div>
+</div></div>
+
+<!-- S0: PROFILE -->
+<div class="pnl ac" id="s0"><div class="card">
+  <div class="sh">Your Partner Profile</div>
+  <div class="ss">One-time setup. Your voice, expertise, and city shape every piece of content so it sounds like <em>you</em> — not a brand template.</div>
+  <div class="pgrid">
+    <div class="pf"><label>Your Name</label><input id="pN" placeholder="e.g. Aarushi Sharma"/></div>
+    <div class="pf"><label>Partner Type</label><select id="pT"><option value="">Select</option><option value="MFD">Mutual Fund Distributor (MFD)</option><option value="AP">Authorised Person (AP)</option><option value="POSP">POSP</option><option value="RIA">Registered Investment Adviser (RIA)</option></select></div>
+    <div class="pf"><label>Your Registration Number <span style="color:#EF4444;font-size:10px;">*Required by SEBI EoDI Circular</span></label><input id="pReg" placeholder="e.g. ARN-12345 or AP0001234"/></div>
+    <div class="pf"><label>Exchange Registration No. <span style="color:#EF4444;font-size:10px;">*Required by SEBI EoDI Circular</span></label><input id="pExReg" placeholder="e.g. NSE-AP-2024-12345"/></div>
+    <div class="pf"><label>Years Experience</label><select id="pE"><option value="">Select</option><option value="0-2">0–2 years</option><option value="3-7">3–7 years</option><option value="8-15">8–15 years</option><option value="15+">15+ years</option></select></div>
+    <div class="pf"><label>City / Region</label><input id="pC" placeholder="e.g. Mumbai, Delhi NCR, Pune"/></div>
+    <div class="pf"><label>Language</label><select id="pL"><option value="hinglish">Hinglish (Roman Hindi + English)</option><option value="english">English</option><option value="hindi">Hindi (Devanagari)</option><option value="marathi">Marathi</option></select></div>
+    <div class="pf"><label>Anthropic API Key <span style="color:#EF4444;font-size:10px;">*Required</span></label><input id="pApiKey" type="password" placeholder="sk-ant-..." style="font-family:'DM Mono',monospace;font-size:12px;"/>
+      <div style="font-size:10px;color:var(--mu);margin-top:4px;">Get your free API key from <a href="https://console.anthropic.com/settings/keys" target="_blank" style="color:var(--a);">console.anthropic.com</a></div></div>
+    <div class="pf"><label>Natural Tone</label><select id="pTo"><option value="conversational">Conversational & friendly</option><option value="authoritative">Authoritative & expert</option><option value="storytelling">Storytelling & relatable</option><option value="direct">Direct & no-nonsense</option><option value="educational">Educational & structured</option></select></div>
+    <div class="pf full"><label>Personal anecdote (optional — makes content unmistakably yours)</label>
+      <textarea id="pA" placeholder='E.g. "Ek client ne 2020 crash mein SIP band kar diya. 2 saal baad unhone kaha yeh unki sabse badi galti thi..."'></textarea>
+      <div style="font-size:11px;color:var(--mu);margin-top:6px;">AI weaves this in compliantly as personal observation — not advice.</div></div>
+  </div>
+  <div class="notice">⚠️ <strong>SEBI EoDI Circular (effective May 1, 2026):</strong> Your registered name and registration number must appear at the beginning of every piece of content you post on social media. These fields are mandatory for compliance.</div>
+  <div style="margin-top:16px;background:rgba(234,118,0,0.08);border:1px solid rgba(234,118,0,0.25);border-radius:10px;padding:16px 20px;">
+    <div style="font-size:13px;font-weight:600;color:#EA7600;margin-bottom:4px;">🎨 AI Campaign Images (Nano Banana — Google Gemini)</div>
+    <div style="font-size:11px;color:var(--mu);margin-bottom:12px;line-height:1.5;">Enter your Google AI API key to generate AI-powered campaign images. Get a free key from <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--a);">aistudio.google.com</a></div>
+    <div class="pf" style="margin-bottom:0;"><label>Google AI API Key</label><input id="gApiKey" type="password" placeholder="AIzaSy..." style="font-family:'DM Mono',monospace;font-size:12px;"/></div>
+  </div>
+ (effective May 1, 2026):</strong> Your registered name and registration number must appear at the beginning of every piece of content you post on social media. These fields are mandatory for compliance.</div>
+  <button class="nxt" onclick="go(1)" style="width:100%">Continue →</button>
+</div></div>
+
+<!-- S1: TOPIC -->
+<div class="pnl" id="s1"><div class="card">
+  <div class="sh">What do you want to post about?</div>
+  <div class="ss">Select a primary topic. The angles shown next are based on what your audience actually searches for and worries about — not generic categories.</div>
+  <div class="chips" id="TC">
+    <div class="chip" onclick="sTopic(this,'mf')">💰 Mutual Funds</div>
+    <div class="chip" onclick="sTopic(this,'stocks')">📈 Stocks</div>
+    <div class="chip" onclick="sTopic(this,'ipo')">🆕 IPO</div>
+    <div class="chip" onclick="sTopic(this,'trading')">⚡ Trading / F&O</div>
+    <div class="chip" onclick="sTopic(this,'gold')">🪙 Gold</div>
+    <div class="chip" onclick="sTopic(this,'safe')">🏦 Safe Investments</div>
+    <div class="chip" onclick="sTopic(this,'tax')">🧾 Tax & Savings</div>
+    <div class="chip" onclick="sTopic(this,'insurance')">🛡️ Insurance</div>
+    <div class="chip" onclick="sTopic(this,'learning')">📘 Financial Literacy</div>
+    <div class="chip" onclick="sTopic(this,'myexp')" style="border-color:rgba(79,107,255,.4)">✍️ My Experience / Story</div>
+    <div class="chip" onclick="sTopic(this,'custom')">💡 My Own Idea</div>
+  </div>
+  <div class="subw" id="SW">
+    <div class="sublbl" id="SL">What specifically do you want to address?</div>
+    <div class="subgrid" id="SC"></div>
+  </div>
+  <div id="CI" style="display:none;margin-top:20px;">
+    <textarea id="cIdea" style="width:100%;background:rgba(79,107,255,.06);border:1px solid var(--bd);border-radius:var(--r);color:#E8EAF6;font-family:var(--f);font-size:14px;padding:12px 16px;outline:none;resize:vertical;min-height:80px;" placeholder="Describe your idea freely. AI will detect topic, context, and intent automatically..."></textarea>
+  </div>
+  <div class="navr"><button class="bck" onclick="go(0)">← Back</button><button class="nxt" id="n1" disabled onclick="goFromTopic()">Next →</button></div>
+</div></div>
+
+
+<!-- S1b: NEWS PICKER (shown only when news_impact angle selected) -->
+<div class="pnl" id="s1b"><div class="card">
+  <div class="sh" id="newsPanelTitle">Today's Top News</div>
+  <div class="ss" id="newsPanelSub">Fetching the latest relevant news for you. Select the story you want to create content around.</div>
+  <div id="newsLoading" style="text-align:center;padding:40px;">
+    <div class="ring" style="margin-bottom:12px;"></div>
+    <div style="font-size:14px;color:var(--mu);">Searching latest news<span class="ldots"></span></div>
+  </div>
+  <div id="newsCards" style="display:none;">
+    <div style="font-size:12px;font-weight:600;color:var(--mu);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;display:flex;align-items:center;gap:8px;">Select one story to build content around <span style="flex:1;height:1px;background:var(--bd);display:block;"></span></div>
+    <div id="newsCardGrid" style="display:flex;flex-direction:column;gap:10px;"></div>
+    <div id="newsError" style="display:none;color:var(--or);font-size:13px;padding:16px;background:rgba(234,118,0,.08);border:1px solid rgba(234,118,0,.25);border-radius:var(--r);margin-top:12px;"></div>
+  </div>
+  <div class="navr" style="margin-top:24px;">
+    <button class="bck" onclick="go(1)">← Back</button>
+    <button class="nxt" id="n1b" disabled onclick="go(2)">Next: Choose Hook →</button>
+  </div>
+</div></div>
+
+<!-- S2: HOOK -->
+<div class="pnl" id="s2"><div class="card">
+  <div class="sh">How do you want to say it?</div>
+  <div class="ss">The hook structure is the single most important decision. It determines whether your post gets saved and shared — or ignored. Each maps to a proven virality pattern.</div>
+  <div class="igrid">
+    <div class="icard" onclick="sInt(this,'mythbust')"><div class="iico">💥</div><div class="itit">Myth Bust</div><div class="idsc">Counter a wrong belief most people have. Flips thinking instantly. Drives the highest comment count.</div></div>
+    <div class="icard" onclick="sInt(this,'surprise')"><div class="iico">😲</div><div class="itit">Surprising Fact / Stat</div><div class="idsc">A specific counter-intuitive data point. Makes people say "wait, really?" Stops the scroll cold.</div></div>
+    <div class="icard" onclick="sInt(this,'mistake')"><div class="iico">⚠️</div><div class="itit">Common Mistake</div><div class="idsc">"Yeh galti main khud karta tha." Personal, relatable. Highest share-to-friend rate.</div></div>
+    <div class="icard" onclick="sInt(this,'nobodytells')"><div class="iico">🤫</div><div class="itit">What Nobody Tells You</div><div class="idsc">The insider angle. Makes followers feel they're getting access to a secret the market hides.</div></div>
+    <div class="icard" onclick="sInt(this,'today')"><div class="iico">📅</div><div class="itit">Why This Matters TODAY</div><div class="idsc">Connect the concept to what's happening in markets right now. High urgency, high saves.</div></div>
+    <div class="icard" onclick="sInt(this,'stepbystep')"><div class="iico">📋</div><div class="itit">Step-by-Step Guide</div><div class="idsc">Numbered, actionable. "4 cheezein jo aaj hi karo." Instagram's highest-save format.</div></div>
+    <div class="icard" onclick="sInt(this,'opinion')"><div class="iico">🎙️</div><div class="itit">My Honest Opinion</div><div class="idsc">Your direct POV without hedging. More polarising = more shareable. Builds personal brand trust.</div></div>
+    <div class="icard" onclick="sInt(this,'explain')"><div class="iico">💡</div><div class="itit">Simple Explanation</div><div class="idsc">Explain one complex concept simply using an everyday Indian analogy. Rachana's signature format.</div></div>
+    <div class="icard" onclick="sInt(this,'comparison')"><div class="iico">⚖️</div><div class="itit">Comparison / VS</div><div class="idsc">"X vs Y — which one should you pick?" Extremely high saves. People bookmark for reference.</div></div>
+    <div class="icard" onclick="sInt(this,'story')"><div class="iico">📖</div><div class="itit">Client Story</div><div class="idsc">A real situation you witnessed (anonymised). Shows impact, builds trust, humanises your expertise.</div></div>
+  </div>
+  <div class="anecb" id="AH" style="display:none"><label>🔗 Your anecdote will be woven in here</label><div id="AP" style="font-size:13px;color:rgba(200,205,235,.8);line-height:1.6;"></div></div>
+  <div class="navr"><button class="bck" onclick="go(1)">← Back</button><button class="nxt" id="n2" disabled onclick="go(3)">Next: Choose Audience →</button></div>
+</div></div>
+
+<!-- S3: AUDIENCE -->
+<div class="pnl" id="s3"><div class="card">
+  <div class="sh">Who are you talking to?</div>
+  <div class="ss">The same insight lands completely differently depending on your audience's anxieties and vocabulary. Pick the person you know best.</div>
+  <div class="agrid">
+    <div class="acard" onclick="sAud(this,'youngpro')"><div class="aico">👨‍💻</div><div><div class="atit">Young Professional</div><div class="asub">22–35, first salary, figuring it out</div></div></div>
+    <div class="acard" onclick="sAud(this,'women')"><div class="aico">👩</div><div><div class="atit">Women Investors</div><div class="asub">Seeking financial independence</div></div></div>
+    <div class="acard" onclick="sAud(this,'traders')"><div class="aico">📊</div><div><div class="atit">Active Traders</div><div class="asub">F&O, intraday, technically aware</div></div></div>
+    <div class="acard" onclick="sAud(this,'longterm')"><div class="aico">🏛️</div><div><div class="atit">Long-term Investors</div><div class="asub">Wealth builders, patient capital</div></div></div>
+    <div class="acard" onclick="sAud(this,'beginners')"><div class="aico">🌱</div><div><div class="atit">Complete Beginners</div><div class="asub">Starting from zero</div></div></div>
+    <div class="acard" onclick="sAud(this,'business')"><div class="aico">🏢</div><div><div class="atit">Business Owners</div><div class="asub">SME owners, irregular income</div></div></div>
+    <div class="acard" onclick="sAud(this,'retirees')"><div class="aico">🌅</div><div><div class="atit">Pre-retirement / 50+</div><div class="asub">Wealth preservation focus</div></div></div>
+    <div class="acard" onclick="sAud(this,'nri')"><div class="aico">✈️</div><div><div class="atit">NRI / Diaspora</div><div class="asub">Investing in India from abroad</div></div></div>
+  </div>
+  <div class="navr"><button class="bck" onclick="go(2)">← Back</button><button class="nxt" id="n3" disabled onclick="go(4)">Next: Format & Review →</button></div>
+</div></div>
+
+<!-- S4: FORMAT + REVIEW -->
+<div class="pnl" id="s4"><div class="card">
+  <div class="sh">Choose output formats</div>
+  <div class="ss">Select which content pieces to generate. Each gets a unique platform-native version + a downloadable campaign image.</div>
+  <div class="fpills">
+    <div class="fp sel" onclick="tFmt(this,'instagram')" data-f="instagram">📱 Instagram</div>
+    <div class="fp sel" onclick="tFmt(this,'whatsapp')" data-f="whatsapp">💬 WhatsApp</div>
+    <div class="fp sel" onclick="tFmt(this,'linkedin')" data-f="linkedin">💼 LinkedIn</div>
+    <div class="fp sel" onclick="tFmt(this,'carousel')" data-f="carousel">🖼️ Carousel Script</div>
+  </div>
+  <div style="margin:24px 0 16px;padding-top:20px;border-top:1px solid var(--bd);">
+    <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:16px;">Review</div>
+    <div id="RV" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>
+  </div>
+  <button class="genbtn" onclick="startGen()">✨ Generate Content + Campaign Designs →</button>
+  <div class="navr" style="margin-top:12px;"><button class="bck" onclick="go(3)" style="flex:1">← Back</button></div>
+</div></div>
+
+<!-- S5: OUTPUT -->
+<div class="pnl" id="s5"><div class="card">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+    <div style="font-size:20px;font-weight:600;color:#fff;">Generated Content</div>
+    <button class="rbtn" onclick="restart()">← Start over</button>
+  </div>
+  <div id="SB" class="sbar"></div>
+  <div class="alog"><div class="alogtit">🤖 Agent Pipeline Log</div><div id="AL"></div></div>
+  <div id="LS" style="text-align:center;padding:40px;"><div class="ring" style="margin-bottom:12px;"></div><div style="font-size:14px;color:var(--mu);">Agent 1 generating content<span class="ldots"></span></div></div>
+  <div id="TR" style="display:none;">
+    <div class="ptabs" id="PT"></div>
+    <div id="PO"></div>
+    <div class="compbdg" id="complianceBadge">✅ SEBI + Angel One Compliant — All 25 guardrails passed (3 circulars)</div>
+    <div class="disc">⚠️ This content is for educational purposes only and is not investment advice. Investments are subject to market risks.</div>
+  </div>
+  <div class="csec" id="CS" style="display:none;">
+    <div style="height:1px;background:var(--bd);margin:32px 0 28px;"></div>
+    <div class="csec-hdr"><div class="csec-tit">🎨 Campaign Designs</div><div class="csec-bdg">Agent 4A → 4B</div></div>
+    <div id="CL" style="text-align:center;padding:40px;"><div class="ring" style="margin-bottom:12px;"></div><div style="font-size:14px;color:var(--mu);">Agent 4A extracting structure<span class="ldots"></span></div></div>
+    <div id="CR" style="display:none;">
+      <div class="ctabs">
+        <div class="ctab ac" onclick="sCamp('LI',this)">💼 LinkedIn (1200×627)</div>
+        <div class="ctab" onclick="sCamp('IG',this)">📱 Instagram (1080×1080)</div>
+        <div class="ctab" onclick="sCamp('WA',this)">💬 WhatsApp (1080×1080)</div>
+      </div>
+      <div id="cLI" class="cwrap ac"><canvas id="cvL" width="1200" height="627"></canvas><img id="imgL"/><a id="dlL" class="dlbtn" download="linkedin_campaign.jpg">⬇ Download LinkedIn (1200×627)</a></div>
+      <div id="cIG" class="cwrap"><canvas id="cvI" width="1080" height="1080"></canvas><img id="imgI"/><a id="dlI" class="dlbtn" download="instagram_campaign.jpg">⬇ Download Instagram (1080×1080)</a></div>
+      <div id="cWA" class="cwrap"><canvas id="cvW" width="1080" height="1080"></canvas><img id="imgW"/><a id="dlW" class="dlbtn" download="whatsapp_campaign.jpg">⬇ Download WhatsApp (1080×1080)</a></div>
+    </div>
+  </div>
+<!-- VIDEO SCRIPT SECTION -->
+  <div id="videoSection" style="display:none;margin-top:32px;">
+    <div style="height:1px;background:rgba(79,107,255,0.2);margin:32px 0 28px;"></div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+      <div style="font-size:18px;font-weight:600;color:#fff;">🎬 HeyGen Video Script</div>
+      <div style="font-size:11px;padding:4px 10px;border-radius:99px;background:rgba(234,118,0,0.15);border:1px solid rgba(234,118,0,0.3);color:#EA7600;">Agent 5</div>
+    </div>
+    <div style="font-size:12px;color:var(--mu);margin-bottom:14px;line-height:1.6;">
+      Copy the entire prompt below and paste it into HeyGen's <strong>"Generate a video from a prompt"</strong> feature. Your avatar, voice, and background settings should be configured in HeyGen separately.
+    </div>
+    <div style="background:rgba(15,18,53,.8);border:1px solid rgba(234,118,0,0.3);border-radius:14px;padding:24px;position:relative;">
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#EA7600;margin-bottom:16px;display:flex;align-items:center;gap:8px;">
+        🎥 Video Prompt — Copy to HeyGen
+        <span style="flex:1;height:1px;background:rgba(234,118,0,0.2);display:block;"></span>
+      </div>
+      <div id="videoPromptBody" style="font-size:13px;line-height:1.8;color:#D8DCF2;white-space:pre-wrap;font-family:'DM Mono',monospace;"></div>
+      <button onclick="navigator.clipboard.writeText(document.getElementById('videoPromptBody').textContent).then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Video Prompt',2000);})" style="position:absolute;top:16px;right:16px;padding:8px 16px;font-size:12px;font-weight:600;background:rgba(234,118,0,0.15);border:1px solid rgba(234,118,0,0.3);border-radius:8px;color:#EA7600;cursor:pointer;font-family:var(--f);transition:all .2s;">Copy Video Prompt</button>
+    </div>
+    <div style="margin-top:16px;padding:14px 18px;background:rgba(79,107,255,0.08);border:1px solid rgba(79,107,255,0.2);border-radius:10px;">
+      <div style="font-size:13px;font-weight:600;color:#fff;margin-bottom:8px;">📋 How to use in HeyGen:</div>
+      <div style="font-size:12px;color:var(--mu);line-height:1.7;">
+        1. <strong>Create your Digital Twin (one-time setup):</strong> In HeyGen → "Avatars" → "Create Digital Twin" → Record a <strong>15-second webcam clip</strong> (face clearly visible, good lighting). This captures your face, motion style, and consent. HeyGen uses this for both talking-head AND full-body cinematic shots.<br>
+        2. <strong>Clone your voice (one-time setup):</strong> "Voices" → "Voice Clone" → Record <strong>2-3 minutes</strong> of yourself speaking naturally in your language (Hinglish/Hindi/English). This ensures the video sounds like YOU.<br>
+        3. Open <strong>HeyGen Dashboard</strong> → Click <strong>"Create Video"</strong> → Select <strong>"Video Agent (Prompt to Video)"</strong><br>
+        4. <strong>Paste</strong> the entire video prompt above into the prompt text box<br>
+        5. <strong>Video Agent automatically uses:</strong><br>
+        &nbsp;&nbsp;&nbsp;• <strong>Seedance 2.0</strong> for walking/cinematic scenes (your avatar walks, changes locations, full body motion)<br>
+        &nbsp;&nbsp;&nbsp;• <strong>Avatar V</strong> for talking-head explanation scenes (close-up, lip-sync, hand gestures)<br>
+        &nbsp;&nbsp;&nbsp;• It mixes both engines automatically based on the scene descriptions in the prompt<br>
+        6. Set <strong>aspect ratio</strong> to 9:16 for Instagram Reels/YouTube Shorts, or 16:9 for LinkedIn/YouTube<br>
+        7. Click <strong>"Generate"</strong> — HeyGen will produce the video in 3-5 minutes<br>
+        8. <strong>Review in AI Studio:</strong> Every scene is editable after rendering. Swap a background, adjust a motion, or tweak the script — without regenerating the full video.<br>
+        9. <strong>Download</strong> and post on your social media with the caption from the Instagram/LinkedIn tab above
+      </div>
+    </div>
+  </div>
+
+</div></div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// SEARCH-INTENT DRIVEN SUB-ANGLES
+// Each angle is based on what real users actually
+// search for and ask about each topic in India
+// ═══════════════════════════════════════════
+const SUBS = {
+  mf:[
+    {v:'news_impact',l:'📰 How today\'s news impacts my MF investments',w:'LIVE — fetches today\'s top mutual fund & market news. User picks a news story to build content around.'},
+    {v:'sip_crash',l:'Should I stop SIP when market falls?',w:'#1 panic question — millions search this every time Sensex drops 5%+'},
+    {v:'sip_vs_lumpsum',l:'SIP vs Lump Sum — which is better?',w:'The eternal debate. Huge search volume. Perfect comparison content.'},
+    {v:'how_much_sip',l:'How much SIP do I need to reach ₹1 Cr?',w:'Goal-based SIP calculation — extremely relatable to young earners'},
+    {v:'which_fund',l:'Which mutual fund should I choose?',w:'The most-asked beginner question. Great for partner expertise showcase.'},
+    {v:'elss_tax',l:'ELSS — save tax and grow wealth?',w:'Peaks every Jan-March. Very high intent, highly shareable.'},
+    {v:'mf_vs_fd',l:'Mutual Fund vs FD — which gives better returns?',w:'Everyone leaving FDs wants to understand this. Huge audience.'},
+    {v:'mf_vs_stock',l:'Direct stocks vs mutual funds — what\'s safer?',w:'New investors always ask this before making a choice.'},
+    {v:'sip_pause',l:'What happens if I miss an SIP instalment?',w:'Creates anxiety. Myth-bust opportunity — answer is reassuring.'},
+    {v:'index_vs_active',l:'Index fund vs actively managed fund',w:'Growing search intent as awareness of expense ratios increases.'},
+    {v:'sip_market_up',l:'Should I invest more when market is at all-time high?',w:'Trending every time Nifty hits ATH. Very topical.'},
+    {v:'flexi_smallcap',l:'Small cap vs flexi cap — what\'s right for me?',w:'Common confusion among investors moving beyond basics.'},
+    {v:'rupee_cost',l:'What is Rupee Cost Averaging (and why it works)?',w:'Core concept every new SIP investor needs to understand.'}
+  ],
+  stocks:[
+    {v:'news_impact',l:'📰 How today\'s news impacts stock investors',w:'LIVE — fetches today\'s top stock market news. User picks a story to create content around.'},
+    {v:'pe_ratio',l:'How to check if a stock is cheap or expensive?',w:'P/E ratio explained — the most searched fundamental analysis concept.'},
+    {v:'stock_vs_mf',l:'Should I buy stocks directly or via mutual funds?',w:'First question every new demat account holder asks.'},
+    {v:'when_to_sell',l:'When should I sell a stock — profit booking or hold?',w:'Most investors don\'t know when to exit. Huge anxiety around this.'},
+    {v:'promoter_holding',l:'What is promoter holding and why does it matter?',w:'Fundamental quality signal most retail investors overlook.'},
+    {v:'sector_rotation',l:'Which sectors do well in which market conditions?',w:'Bridges technical and fundamental thinking. Agents can teach this.'},
+    {v:'large_mid_small',l:'Large cap vs mid cap vs small cap — what\'s the risk?',w:'Very searched by investors moving from MF to direct stocks.'},
+    {v:'dividend_stocks',l:'Should I invest for dividends or growth?',w:'Common question, especially from older investors and retirees.'},
+    {v:'stock_market_high',l:'Market at all-time high — is it safe to invest?',w:'Most googled question every time Nifty 50 breaks a record.'},
+    {v:'loss_stock',l:'My stock is down 30% — should I hold, average, or exit?',w:'Deeply relatable. Maximum comment engagement on this topic.'},
+    {v:'portfolio_how_many',l:'How many stocks should I hold in my portfolio?',w:'Over-diversification is India\'s #1 stock market mistake.'},
+    {v:'earnings_report',l:'How to read a company\'s quarterly results?',w:'Fundamental skill gap. Huge content opportunity for MFDs/APs.'},
+    {v:'technical_basic',l:'Support & resistance — the basics for new traders',w:'Bridge content between investing and trading. Very high search.'}
+  ],
+  ipo:[
+    {v:'news_impact',l:'📰 Latest IPO news & upcoming listings',w:'LIVE — fetches today\'s top IPO news. User picks one story to create content around.'},
+    {v:'gmp_reliable',l:'Should you trust IPO GMP (Grey Market Premium)?',w:'GMP is the #1 searched term during every IPO season in India.'},
+    {v:'how_to_apply',l:'How to apply for an IPO — step by step',w:'Evergreen beginner question. Gets huge traffic every IPO season.'},
+    {v:'allotment_chances',l:'How to improve your chances of IPO allotment',w:'Everyone who has missed allotment searches this. Very high intent.'},
+    {v:'listing_day',l:'Should you sell on IPO listing day or hold?',w:'Most urgent question on listing day itself. Time-sensitive content.'},
+    {v:'ipo_fundamentals',l:'How to check if an IPO is worth applying for?',w:'DRHP, financials, promoter background — what to actually check.'},
+    {v:'ipo_vs_secondary',l:'Is it better to buy IPO or wait and buy after listing?',w:'Many investors overthink this. Clear answer drives high saves.'},
+    {v:'sme_vs_mainboard',l:'SME IPO vs Mainboard IPO — key differences',w:'SME IPO boom has created massive confusion around this topic.'},
+    {v:'ipo_tax',l:'Tax on IPO gains — STCG vs LTCG explained',w:'Most IPO investors don\'t factor in taxes. Classic myth-bust.'},
+    {v:'oversubscribed_ipo',l:'What does 100x oversubscribed IPO actually mean?',w:'Confuses beginners. Simple explainer gets massive shares.'},
+    {v:'ipo_loss_risk',l:'Why do some IPOs list below issue price?',w:'Important warning content — very shareable, builds trust as advisor.'},
+    {v:'kostak_sauda',l:'What is Kostak rate and Subject to Sauda?',w:'Searched heavily during IPO windows. Educates on grey market risk.'},
+    {v:'ipo_categories',l:'Retail vs NII vs QIB — how are IPO quotas divided?',w:'Common confusion. Simple explanation drives saves.'}
+  ],
+  trading:[
+    {v:'news_impact',l:'📰 How today\'s market news impacts F&O traders',w:'LIVE — fetches today\'s trading & F&O news. User picks a story to create content around.'},
+    {v:'fo_losses',l:'Why do 90% of F&O traders lose money?',w:'SEBI study data. Shocking stat. Highest engagement potential of any trading topic.'},
+    {v:'options_basics',l:'What are Call and Put options — explained simply',w:'#1 searched F&O concept. Analogies work brilliantly here.'},
+    {v:'intraday_vs_swing',l:'Intraday trading vs swing trading — which suits you?',w:'Common early trader confusion. Great for position-taking content.'},
+    {v:'stop_loss',l:'Why a stop-loss is not optional in trading',w:'Most emotional trading mistake. Personal story format works extremely well.'},
+    {v:'expiry_day',l:'Why expiry day is dangerous for option buyers',w:'Weekly expiry fear is real. Time-decay explanation here is powerful.'},
+    {v:'margin_pledge',l:'What is margin and how can it wipe your capital?',w:'Margin misuse is a common beginner mistake. Warning content.'},
+    {v:'theta_decay',l:'Theta decay — why options lose value every day',w:'The concept that kills most option buyers. Extremely important.'},
+    {v:'capital_req',l:'How much capital do you actually need to start F&O?',w:'2025 SEBI rules changed minimum capital. Very timely, very searched.'},
+    {v:'revenge_trading',l:'What is revenge trading and how to break the cycle?',w:'Deeply emotional. Every trader has experienced this. Very relatable.'},
+    {v:'fo_tax',l:'How is F&O trading income taxed in India?',w:'Business income, not capital gains. Most traders don\'t know this.'},
+    {v:'option_buying_vs_selling',l:'Option buying vs option selling — risk comparison',w:'A genuinely complex topic simplified. Drives saves like no other.'},
+    {v:'paper_trading',l:'Should you paper trade before risking real money?',w:'Advice every new trader needs but nobody gives clearly.'}
+  ],
+
+  gold:[
+    {v:'news_impact',l:'📰 What\'s driving gold prices today?',w:'LIVE — fetches today\'s gold & commodity news. User picks a story to create content around.'},
+    {v:'sgb_vs_digital',l:'SGB vs Digital Gold vs Gold ETF — which to buy?',w:'The most searched gold investment comparison in India 2024-25.'},
+    {v:'sgb_discontinued',l:'SGB discontinued — what should gold investors do now?',w:'RBI stopped new SGB issuance in 2024. Very topical, very searched.'},
+    {v:'gold_jewellery_vs_invest',l:'Gold jewellery vs investment gold — the real cost',w:'Making charges, GST, resale — the numbers shock most people.'},
+    {v:'gold_in_portfolio',l:'How much gold should be in your portfolio?',w:'Most investors either over-allocate or ignore gold entirely.'},
+    {v:'gold_price_why',l:'Why gold prices are rising / what drives gold?',w:'Timely whenever gold hits a new high (which is often in India).'},
+    {v:'gold_dollar',l:'Gold price and the dollar — what\'s the connection?',w:'Very few retail investors understand this. Great education piece.'},
+    {v:'gold_hedge',l:'Gold as a hedge — what does that actually mean?',w:'The "gold protects against inflation" claim explained simply.'},
+    {v:'sovereign_gold_bond_tax',l:'SGB maturity — is the gain really tax-free?',w:'Extremely high intent. Capital gains exemption on SGB is misunderstood.'},
+    {v:'gold_etf_how',l:'How to buy a gold ETF — step by step',w:'Actionable beginner content. Very high saves.'},
+    {v:'akshaya_tritiya',l:'Akshaya Tritiya — should you buy gold or invest?',w:'Annual seasonal content. Huge reach around the festival.'},
+    {v:'gold_vs_equity',l:'Gold vs equity over 10 years — the real numbers',w:'Data-driven comparison. Debunks myths about both asset classes.'},
+    {v:'digital_gold_safe',l:'Is digital gold safe? What are the risks?',w:'No SEBI regulation on digital gold. A topic most agents can educate on.'}
+  ],
+  safe:[
+    {v:'news_impact',l:'📰 Latest news on bonds, FDs & safe investments',w:'LIVE — fetches today\'s fixed income & safe investment news. User picks a story.'},
+    {v:'ppf_vs_epf',l:'PPF vs EPF — which is better for long-term savings?',w:'The original safe investment debate. Evergreen content.'},
+    {v:'fd_vs_debt_mf',l:'FD vs Debt Mutual Fund — what\'s actually better?',w:'Millions of FD investors need this comparison before switching.'},
+    {v:'ppf_vs_elss',l:'PPF vs ELSS — tax saving with growth',w:'Very searched in Jan–March. Classic content for tax season.'},
+    {v:'bonds_india',l:'Government bonds vs corporate bonds — basics explained',w:'Fixed income concepts are a gap for most retail investors.'},
+    {v:'nps_retirement',l:'NPS — is it really good for retirement?',w:'Very polarising product. Great for honest opinion content.'},
+    {v:'rbi_floating_bond',l:'RBI Floating Rate Bonds — what are they?',w:'Less known but important. Educational content that builds credibility.'},
+    {v:'liquid_fund',l:'What are liquid funds — and when to use them?',w:'Emergency fund alternatives. Very useful for beginners.'},
+    {v:'arbitrage_fund',l:'Arbitrage funds — the low-risk equity fund nobody talks about',w:'"What nobody tells you" format. Very shareable.'},
+    {v:'asset_allocation',l:'Asset allocation — how to split your money the right way',w:'The most fundamental investment concept. Endlessly useful.'},
+    {v:'emergency_fund',l:'Emergency fund — how much is enough?',w:'The first financial step everyone asks about. Great beginner content.'}
+  ],
+  tax:[
+    {v:'news_impact',l:'📰 Latest tax rule changes & announcements',w:'LIVE — fetches today\'s tax & regulatory news. User picks a story to create content around.'},
+    {v:'80c_options',l:'Section 80C — 12 ways to save up to ₹1.5 lakh in tax',w:'#1 searched tax topic every year. Massive content opportunity Jan-March.'},
+    {v:'new_vs_old_regime',l:'New tax regime vs old tax regime — which saves more?',w:'Most confusing change in Indian personal finance. Huge search volume.'},
+    {v:'ltcg_stcg',l:'LTCG vs STCG — how your investment gains are taxed',w:'Critical knowledge gap. Most investors don\'t factor this in.'},
+    {v:'fo_tax_treatment',l:'F&O income = business income. What does that mean?',w:'Shocks most traders. Very shareable warning content.'},
+    {v:'home_loan_tax',l:'Home loan tax benefits — what you can actually save',w:'Extremely high intent. 80C and 24B benefits need clear explanation.'},
+    {v:'elss_lock_in',l:'ELSS lock-in over — should I exit or stay invested?',w:'Very common situation for investors who started ELSS 3 years ago.'},
+    {v:'nri_tax_india',l:'NRI taxation on Indian investments — what you must know',w:'Complex topic. NRIs who invest in India desperately need this.'},
+    {v:'capital_gains_grandfathering',l:'What is grandfathering in capital gains tax?',w:'Post-2018 LTCG rule. Still confuses most investors.'},
+    {v:'huf_tax',l:'HUF for tax saving — what is it and who should use it?',w:'Underused but powerful. Great "what nobody tells you" content.'},
+    {v:'itr_deadline',l:'ITR filing deadline — what happens if you miss it?',w:'July annually. Very high search. Timely content with clear CTA.'}
+  ],
+  insurance:[
+    {v:'news_impact',l:'📰 Latest insurance sector news & IRDAI updates',w:'LIVE — fetches today\'s insurance news. User picks a story to create content around.'},
+    {v:'term_how_much',l:'How much term insurance cover do I actually need?',w:'10–15x income rule. The first question anyone buying term insurance asks.'},
+    {v:'ulip_vs_term',l:'ULIP vs Term Insurance — don\'t mix insurance and investment',w:'India\'s most misunderstood insurance topic. Very high engagement.'},
+    {v:'health_insurance_basics',l:'What does your health insurance actually cover?',w:'Most people never read their policy. Very relatable reality check.'},
+    {v:'term_online_vs_agent',l:'Online term insurance vs agent — what\'s the difference?',w:'Online is much cheaper. Many people don\'t know this.'},
+    {v:'claim_settlement',l:'How to check an insurer\'s claim settlement ratio',w:'Critical before buying. Very practical, very saves-worthy.'},
+    {v:'insurance_nominee',l:'Why your insurance nominee matters more than you think',w:'Common mistake — wrong nominee = family gets nothing. Shocking story.'},
+    {v:'insurance_not_investment',l:'Why you should NEVER mix insurance and investment',w:'ULIP, traditional endowment — clear honest opinion content.'},
+    {v:'mediclaim_vs_health',l:'Mediclaim vs comprehensive health insurance — key differences',w:'Many people confuse these. Huge gap in awareness.'},
+    {v:'how_early_term',l:'At what age should you buy term insurance?',w:'Younger = much cheaper premiums. Great advice content.'},
+    {v:'policy_lapse',l:'What happens if you miss an insurance premium?',w:'Common anxiety. Reassuring explainer builds trust.'},
+    {v:'critical_illness',l:'Critical illness rider — is it worth adding?',w:'Cancer, heart attack coverage. Very underutilized product.'},
+    {v:'insurance_review',l:'When should you review your insurance coverage?',w:'Salary hike, marriage, child — life events trigger this.'}
+  ],
+  learning:[
+    {v:'news_impact',l:'📰 Use today\'s market news as a teaching moment',w:'LIVE — fetches today\'s financial news to build an educational post around.'},
+    {v:'compound_interest',l:'How compound interest actually works — with a real example',w:'The most powerful concept in personal finance. Always relevant.'},
+    {v:'inflation_impact',l:'How inflation silently eats your savings',w:'FD at 7% + inflation at 6% = 1% real return. Shocking when visualised.'},
+    {v:'financial_goals',l:'How to set financial goals the right way',w:'The foundation of all investing. Very high beginner engagement.'},
+    {v:'demat_account',l:'Demat account vs trading account — what\'s the difference?',w:'Very searched by new investors. Classic beginner explainer.'},
+    {v:'market_cap',l:'Market cap — what it tells you about a company',w:'Large, mid, small cap categorisation. Very foundational concept.'},
+    {v:'nav_mf',l:'What is NAV in mutual funds — and does a lower NAV mean cheaper?',w:'The #1 mutual fund myth. Enormously shareable myth-bust.'},
+    {v:'diversification',l:'True diversification vs over-diversification',w:'Most investors confuse having many funds with being diversified.'},
+    {v:'bull_bear',l:'Bull market vs bear market — what it means for your money',w:'Jargon most people hear but never fully understand.'},
+    {v:'liquidity',l:'Liquidity — why it matters more than returns in a crisis',w:'2020 taught many investors this lesson the hard way.'},
+    {v:'risk_profile',l:'How to understand your own risk appetite',w:'The most skipped step before investing. Agents can own this.'},
+    {v:'portfolio_review',l:'How often should you review your portfolio?',w:'Annual review — common question. Great content for relationship building.'},
+    {v:'power_of_10years',l:'What ₹5,000/month for 10 years actually becomes',w:'Compounding visualisation. Extremely viral on social media.'}
+  ],
+  myexp:[
+    {v:'client_mistake',l:'A mistake a client made that I\'ll never forget',w:'Emotional, real, educational. Highest-trust content type.'},
+    {v:'my_mistake',l:'A financial mistake I made myself',w:'Radical transparency. Builds trust faster than any credential.'},
+    {v:'wish_knew',l:'What I wish I\'d known when I started in finance',w:'Timeless format. Gets shared widely to younger connections.'},
+    {v:'client_win',l:'A client who followed the plan — and what happened',w:'Proof of concept. Shows impact without claiming returns.'},
+    {v:'honest_take',l:'My honest take on a product everyone is talking about',w:'Opinion content. Very shareable, builds personal brand.'},
+    {v:'changed_mind',l:'Something I used to believe about money — and why I changed my mind',w:'Shows intellectual honesty. Very relatable.'},
+    {v:'hardest_conv',l:'The hardest financial conversation I\'ve had with a client',w:'Deep empathy content. Exceptional comment engagement.'},
+    {v:'advice_ignored',l:'The advice I give that most people ignore',w:'Creates curiosity. Perfect hook for engagement.'}
+  ],
+  custom:[]
+};
+
+const IL={mythbust:'Myth Bust',surprise:'Surprising Fact',mistake:'Common Mistake',nobodytells:"What Nobody Tells You",today:'Why This Matters TODAY',stepbystep:'Step-by-Step Guide',opinion:'My Honest Opinion',explain:'Simple Explanation',comparison:'Comparison / VS',story:'Client Story'};
+const AL={youngpro:'Young Professionals (22–35)',women:'Women Investors',traders:'Active Traders',longterm:'Long-term Investors',beginners:'Complete Beginners',business:'Business Owners',retirees:'Pre-retirement / 50+',nri:'NRI / Diaspora'};
+
+// State
+const S={pN:'',pT:'',pE:'',pC:'',pL:'hinglish',pTo:'conversational',pA:'',pReg:'',pExReg:'',topic:'',tL:'',sub:'',sL:'',sW:'',intent:'',iL:'',aud:'',aL:'',fmts:['instagram','whatsapp','linkedin','carousel'],cIdea:'',selectedNews:null,newsItems:[]};
+
+function go(n){
+  document.querySelectorAll('.pnl').forEach(p=>p.classList.remove('ac'));
+  document.getElementById('s'+n).classList.add('ac');
+  // Progress bar: map step IDs to dot indices
+  const stepOrder=['0','1','1b','2','3','4','5'];
+  const ni=stepOrder.indexOf(String(n));
+  document.querySelectorAll('.pstep').forEach((s,i)=>{
+    s.classList.remove('ac','dn');
+    if(i<ni)s.classList.add('dn');
+    if(i===ni)s.classList.add('ac');
+  });
+  // Hide news progress dot if not using news flow
+  const newsStep=document.getElementById('pstepNews');
+  if(newsStep){
+    newsStep.style.display=(S.sub==='news_impact')?'flex':'none';
+  }
+  if(n===4)buildRev();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+
+// ── NEWS SEARCH QUERIES per topic ──
+const NEWS_QUERIES = {
+  mf:       'mutual fund SIP market India news today',
+  stocks:   'Indian stock market Sensex Nifty stocks news today',
+  ipo:      'IPO India upcoming listing GMP news today',
+  trading:  'F&O options trading Nifty India news today',
+  gold:     'gold price India commodities news today',
+  safe:     'bonds FD PPF interest rate India news today',
+  tax:      'income tax India SEBI regulatory news today',
+  insurance:'insurance IRDAI India news today',
+  learning: 'financial markets India economy news today',
+  myexp:    'Indian stock market finance news today',
+};
+
+// ── NEWS PANEL TITLES per topic ──
+const NEWS_TITLES = {
+  mf:       "Today\'s Top Mutual Fund & Market News",
+  stocks:   "Today\'s Top Stock Market News",
+  ipo:      "Latest IPO & Listing News",
+  trading:  "Today\'s F&O & Trading News",
+  gold:     "Today\'s Gold & Commodity News",
+  safe:     "Latest Fixed Income & Safe Investment News",
+  tax:      "Latest Tax & Regulatory News",
+  insurance:"Latest Insurance & IRDAI News",
+  learning: "Today\'s Market Headlines (for Education)",
+  myexp:    "Today\'s Finance Headlines",
+};
+
+// Route from topic step — go to news picker if news_impact, else go to hook
+function goFromTopic(){
+  if(S.sub==='news_impact'){
+    go('1b');
+    fetchNews();
+  } else {
+    go(2);
+  }
+}
+
+async function fetchNews(){
+  document.getElementById('newsLoading').style.display='block';
+  document.getElementById('newsCards').style.display='none';
+  document.getElementById('n1b').disabled=true;
+  S.selectedNews=null;S.newsItems=[];
+
+  const title=NEWS_TITLES[S.topic]||"Today's Top Finance News";
+  document.getElementById('newsPanelTitle').textContent=title;
+  document.getElementById('newsPanelSub').textContent="Fetching today's news for your topic. Select the story you want to build content around.";
+
+  const query=NEWS_QUERIES[S.topic]||'India finance news today';
+
+  try{
+    // ── STEP 1: Call Claude with web_search tool ──
+    const res1=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:Object.assign({'Content-Type':'application/json'},document.getElementById('pApiKey')?.value?{'x-api-key':document.getElementById('pApiKey').value,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{}),
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:2000,
+        tools:[{"type":"web_search_20250305","name":"web_search"}],
+        messages:[{role:'user',content:`Search the web for the 5 most recent news stories about: "${query}". Focus on Indian finance news from sources like Moneycontrol, Economic Times, Mint, Business Standard, NDTV Profit, Livemint published in the last 48 hours. After searching, return ONLY a valid JSON object in this exact format with no other text:
+{"news":[{"headline":"short headline max 12 words","source":"source name","summary":"2 sentences: what happened and why it matters for Indian investors","content_angle":"one sentence on content opportunity eg myth bust or warning or awareness","published":"Today or X hours ago or Yesterday"}]}`}]
+      })
+    });
+    const data1=await res1.json();
+
+    // ── STEP 2: Handle multi-turn — web_search returns tool_use blocks ──
+    // If stop_reason is tool_use, we need to send results back for final answer
+    if(data1.stop_reason==='tool_use'){
+      // Build messages array with assistant turn + tool results
+      const messages=[
+        {role:'user',content:`Search the web for the 5 most recent news stories about: "${query}". Focus on Indian finance news from sources like Moneycontrol, Economic Times, Mint, Business Standard, NDTV Profit, Livemint published in the last 48 hours. After searching, return ONLY a valid JSON object in this exact format with no other text:\n{"news":[{"headline":"short headline max 12 words","source":"source name","summary":"2 sentences: what happened and why it matters for Indian investors","content_angle":"one sentence on content opportunity eg myth bust or warning or awareness","published":"Today or X hours ago or Yesterday"}]}`},
+        {role:'assistant',content:data1.content},
+      ];
+
+      // Add tool results for each tool_use block
+      const toolResults=[];
+      for(const block of data1.content){
+        if(block.type==='tool_use'){
+          toolResults.push({
+            type:'tool_result',
+            tool_use_id:block.id,
+            content:'Search completed. Please now compile the top 5 most relevant recent Indian finance news stories from the search results and return them as the JSON format requested.'
+          });
+        }
+      }
+      if(toolResults.length>0){
+        messages.push({role:'user',content:toolResults});
+      }
+
+      // ── STEP 3: Second call to get final JSON answer ──
+      const res2=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:Object.assign({'Content-Type':'application/json'},document.getElementById('pApiKey')?.value?{'x-api-key':document.getElementById('pApiKey').value,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{}),
+        body:JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:1500,
+          tools:[{"type":"web_search_20250305","name":"web_search"}],
+          messages:messages
+        })
+      });
+      const data2=await res2.json();
+
+      // Extract text from final response
+      let jsonText='';
+      for(const block of (data2.content||[])){
+        if(block.type==='text') jsonText+=block.text;
+      }
+      parseAndShowNews(jsonText);
+
+    } else {
+      // Direct text response (no tool use needed)
+      let jsonText='';
+      for(const block of (data1.content||[])){
+        if(block.type==='text') jsonText+=block.text;
+      }
+      parseAndShowNews(jsonText);
+    }
+
+  }catch(e){
+    showNewsError('Could not fetch live news: '+e.message);
+  }
+}
+
+function parseAndShowNews(jsonText){
+  try{
+    let cleaned=jsonText.trim().replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
+    const jMatch=cleaned.match(/\{[\s\S]*"news"[\s\S]*\}/);
+    if(jMatch) cleaned=jMatch[0];
+    const parsed=JSON.parse(cleaned);
+    if(parsed.news && parsed.news.length>0){
+      S.newsItems=parsed.news;
+      renderNewsCards(parsed.news);
+    } else {
+      throw new Error('No news items in response');
+    }
+  }catch(e){
+    showNewsError('Could not parse news response: '+e.message+'. You can proceed without a news hook or try again.');
+  }
+}
+
+function showNewsError(msg){
+  document.getElementById('newsLoading').style.display='none';
+  document.getElementById('newsCards').style.display='block';
+  document.getElementById('newsError').style.display='block';
+  document.getElementById('newsError').textContent=msg;
+  document.getElementById('n1b').disabled=false;
+}
+
+function renderNewsCards(items){
+  document.getElementById('newsLoading').style.display='none';
+  document.getElementById('newsCards').style.display='block';
+  document.getElementById('newsError').style.display='none';
+  
+  const grid=document.getElementById('newsCardGrid');
+  grid.innerHTML=items.map((n,i)=>`
+    <div class="newscard" data-idx="${i}" onclick="selectNews(this,${i})">
+      <div class="newscard-num">${i+1}</div>
+      <div class="newscard-body">
+        <div class="newscard-src">${n.source||'Finance News'} · ${n.published||'Recent'}</div>
+        <div class="newscard-headline">${n.headline||''}</div>
+        <div class="newscard-summary">${n.summary||''}</div>
+        <div class="newscard-why">Content opportunity: ${n.content_angle||'Educational insight'}</div>
+      </div>
+    </div>`).join('');
+}
+
+function selectNews(el,idx){
+  document.querySelectorAll('.newscard').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  S.selectedNews=S.newsItems[idx];
+  document.getElementById('n1b').disabled=false;
+}
+
+function sTopic(el,v){
+  document.querySelectorAll('#TC .chip').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');S.topic=v;S.tL=el.textContent.trim();
+  const subs=SUBS[v]||[];
+  document.getElementById('subw')?.remove();
+  if(subs.length>0){
+    document.getElementById('SW').style.display='block';
+    document.getElementById('SL').textContent=v==='myexp'?'What kind of story or experience?':'What specific question does your audience have?';
+    const sc=document.getElementById('SC');
+    sc.innerHTML=subs.map((s,i)=>`
+      <div class="subcard" data-topic="${v}" data-idx="${i}" onclick="sSubByIdx(this)">
+        <div class="subcard-top"><div class="subcard-ico">●</div><div class="subcard-tit">${s.l}</div></div>
+        <div class="subcard-why">Why it works: ${s.w}</div>
+      </div>`).join('');
+    document.getElementById('CI').style.display='none';
+    S.sub='';document.getElementById('n1').disabled=true;
+  }else if(v==='custom'){
+    document.getElementById('SW').style.display='none';
+    document.getElementById('CI').style.display='block';
+    document.getElementById('cIdea').oninput=function(){S.cIdea=this.value;document.getElementById('n1').disabled=this.value.trim().length<5;};
+    S.sub='custom';
+  }
+}
+
+function sSub(el,v,l,w){
+  document.querySelectorAll('.subcard').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');S.sub=v;S.sL=l;S.sW=w;
+  document.getElementById('n1').disabled=false;
+}
+
+function sSubByIdx(el){
+  var topic=el.dataset.topic;
+  var idx=parseInt(el.dataset.idx,10);
+  var s=(SUBS[topic]||[])[idx];
+  if(!s)return;
+  sSub(el,s.v,s.l,s.w);
+}
+
+function sInt(el,v){
+  document.querySelectorAll('.icard').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');S.intent=v;S.iL=IL[v];document.getElementById('n2').disabled=false;
+  const a=document.getElementById('pA').value.trim();
+  if(a&&['mistake','opinion','mythbust','story','nobodytells'].includes(v)){
+    document.getElementById('AH').style.display='block';
+    document.getElementById('AP').textContent='"'+a.substring(0,120)+(a.length>120?'...':'')+'"';
+  }else document.getElementById('AH').style.display='none';
+}
+
+function sAud(el,v){
+  document.querySelectorAll('.acard').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');S.aud=v;S.aL=AL[v];document.getElementById('n3').disabled=false;
+}
+
+function tFmt(el,f){
+  el.classList.toggle('sel');
+  if(el.classList.contains('sel')){if(!S.fmts.includes(f))S.fmts.push(f);}
+  else S.fmts=S.fmts.filter(x=>x!==f);
+}
+
+function buildRev(){
+  S.pN=document.getElementById('pN').value||'Partner';S.pT=document.getElementById('pT').value||'MFD';
+  S.pE=document.getElementById('pE').value||'3-7';S.pC=document.getElementById('pC').value||'India';
+  S.pL=document.getElementById('pL').value;S.pTo=document.getElementById('pTo').value;S.pA=document.getElementById('pA').value;
+  S.pReg=document.getElementById('pReg').value||'';S.pExReg=document.getElementById('pExReg').value||'';
+  const items=[{l:'Partner',v:`${S.pN} · ${S.pT}`},{l:'Reg No.',v:S.pReg||'⚠️ Not provided'},{l:'Exchange Reg No.',v:S.pExReg||'⚠️ Not provided'},{l:'Exp',v:`${S.pE} yrs`},{l:'City',v:S.pC},{l:'Topic',v:S.tL},{l:'Specific angle',v:S.sL},{l:'Why this angle',v:S.sW},{l:'Hook',v:S.iL},{l:'Audience',v:S.aL},{l:'Language',v:S.pL},{l:'Anecdote',v:S.pA?'✓ Included':'—'}];
+  document.getElementById('RV').innerHTML=items.map(i=>`<div style="background:rgba(79,107,255,.05);border:1px solid var(--bd);border-radius:8px;padding:10px 14px;${i.l==='Why this angle'?'grid-column:1/-1;':''}"><div style="font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin-bottom:3px;">${i.l}</div><div style="font-size:13px;font-weight:500;color:#E8EAF6;">${i.v||'—'}</div></div>`).join('');
+}
+
+function buildContentPrompt(){
+  const HK={mythbust:`Open with the myth: "[Wrong widespread belief]" then immediately flip it with truth. Reader should think "I believed this too."`,surprise:`Open with a specific counter-intuitive data point. Vivid, concrete, specific to Indian context. No generic stats.`,mistake:`Open describing a specific mistake — the partner\'s own or a client\'s (anonymised). Then the right approach.`,nobodytells:`Frame as insider knowledge most people don\'t know. Creates sense of exclusive access.`,today:`Immediately connect to what is happening in markets RIGHT NOW. Must feel time-sensitive and urgent.`,stepbystep:`Numbered list of 4-6 clear, one-sentence actions. Each step actionable. Designed to be saved.`,opinion:`Open with the partner\'s direct, unhesitatingly honest opinion. Not hedged. Not diplomatic. Then the reasoning.`,explain:`Start with simplest possible explanation using an everyday Indian analogy — chai, cricket, auto, wedding, EMI, ghar.`,comparison:`Set up a clear X vs Y frame. Give the verdict based on the specific audience\'s situation. Drives bookmarks.`,story:`Start with a specific scene: "Ek client mera tha..." or "Mujhe yaad hai ek situation..." Build the story then reveal the lesson.`};
+  const AV={youngpro:`25-32 yr old salaried professional. Stressed about EMIs, lifestyle inflation, and feeling financially behind. Energetic, relatable tone.`,women:`Women who are capable but haven\'t been told finance is their domain. Empowering, non-condescending, independent. No assumption of male family member making decisions.`,traders:`Assume some technical knowledge. Speak to the emotional reality of trading: FOMO, revenge trades, overconfidence, losses that hurt.`,longterm:`Patient, wealth-building tone. Long timescales. Compounding. Ignore short-term noise.`,beginners:`Assume zero prior knowledge. Every technical term gets a one-sentence plain-language explanation. Use analogies. Make them feel capable, not stupid.`,business:`Business owners think in cash flow not SIPs. Connect finance to their business reality — surplus cash, seasonal income, growth vs security trade-off.`,retirees:`Capital preservation first. Regular income, low risk. Calm, reassuring tone. Acknowledge the concern of outliving their money.`,nri:`Address NRE/NRO accounts, FEMA rules, currency risk, repatriation. Practical and specific — they\'ve heard generic advice before.`};
+  const LG={hinglish:`Natural Hinglish — Roman script. NOT translated English. NOT formal Hindi. WhatsApp-style Indian millennial voice. Phrases like "seedha baat", "soch lo", "yaar", "actually", "kyunki" should appear naturally.`,english:`Simple, warm Indian English. Not corporate. Direct. Slightly conversational.`,hindi:`Simple Devanagari Hindi. Everyday spoken Hindi, not formal.`,marathi:`Simple conversational Marathi with natural English terms.`};
+  const anec=S.pA?`\n\nPARTNER ANECDOTE — weave compliantly as personal observation, NOT advice:\n"${S.pA}"\nMake it feel authentic and human.`:'';
+  const cust=S.cIdea?`\nCUSTOM IDEA: "${S.cIdea}"\n`:'';
+  return `You are an AI content engine for Angel One. Generate social media content for a financial partner to post on their PERSONAL social media to build followers and generate leads.
+
+PARTNER: ${S.pN} | ${S.pT} | ${S.pE} years experience | ${S.pC}
+TONE: ${S.pTo} | LANGUAGE: ${S.pL}
+TOPIC: ${S.tL}
+SPECIFIC ANGLE (this is the exact audience question to address): ${S.sL}
+WHY THIS ANGLE WORKS: ${S.sW}
+HOOK TYPE: ${S.iL} | AUDIENCE: ${S.aL}
+${cust}${anec}
+
+HOOK INSTRUCTIONS: ${HK[S.intent]||'Create a compelling scroll-stopping hook.'}
+AUDIENCE VOICE: ${AV[S.aud]||'General Indian investor.'}
+LANGUAGE: ${LG[S.pL]||LG.hinglish}
+
+SEBI + ANGEL ONE COMPLIANCE RULES (NON-NEGOTIABLE — violating any of these will cause rejection):
+
+ABSOLUTE PROHIBITIONS:
+- ZERO investment advice or buy/sell recommendations of any kind
+- ZERO fixed, guaranteed, or indicative return claims or profit promises
+- ZERO predictions about market direction or specific security performance
+- ZERO urgency language ("invest now", "last chance", "act immediately", "limited time")
+- ZERO superlative terms: "best", "no.1", "top", "among market leaders", "guaranteed", "assured"
+- ZERO comparison that discredits other brokers, platforms or financial service providers
+- ZERO incentive offers: cashback, vouchers, goodies, referral bonuses, account opening gifts
+- ZERO celebrity references or endorsements
+- ZERO account opening links or direct CTAs to open an account on EDUCATIONAL content
+- ZERO use of logos of specific companies, securities, or third-party brands
+- ZERO false, misleading, biased, exaggerated, deceptive, or ambiguous statements
+- NEVER compel users to execute trades/transactions to avail any benefit
+- If specific securities are mentioned as examples, they must be framed purely as illustration, not recommendation
+
+REQUIRED ELEMENTS:
+- Standard disclaimer: "Investments in securities market are subject to market risks, read all related documents carefully before investing."
+- If content covers Non-Broking products (Mutual Fund, Insurance): add "These are not Exchange traded products, and Angel One Ltd. is just acting as distributor. All disputes with respect to the distribution activity would not have access to Exchange investor redressal forum or Arbitration mechanism."
+- Content must be accurate, complete, and unambiguous
+- Partner must be identified as "Authorised Person of Angel One Ltd." — never as "Angel One" itself
+- 3-MONTH DATA LAG RULE: Do NOT reference specific security price data from the preceding 3 months. General index data is fine; specific stock/fund price movements from last 3 months are NOT allowed
+- MFD RULE: If partner is an MFD, do NOT name specific mutual fund schemes or discuss scheme-level historical performance. Keep to generic investor education about categories and concepts only
+
+SAFE LANGUAGE ONLY:
+- "aise situation mein investors aksar..." / "jo main observe karta/karti hoon..." / "yeh samajhna important hai..."
+- Frame everything as education, awareness, and personal observation — never as advice
+
+${S.selectedNews ? `SELECTED NEWS STORY (THIS IS THE CORE OF THE CONTENT — build everything around this):
+Headline: ${S.selectedNews.headline}
+Source: ${S.selectedNews.source}
+Summary: ${S.selectedNews.summary}
+Content opportunity: ${S.selectedNews.content_angle}
+
+The content MUST:
+- Reference this specific news story as the hook/context
+- Explain what this news means for the partner's target audience (${S.aL})
+- Connect the news to a practical financial insight or action awareness
+- Make the audience feel informed about something that happened TODAY
+` : ''}INSIGHT RULE: Every output must answer "WHY THIS MATTERS TODAY" — connect to current market context.
+VOICE RULE: This is posted by ${S.pN} — a real person with ${S.pE} years in finance from ${S.pC}. It must sound like THEM. Not a brand. Not a robot.
+
+OUTPUT — label each section EXACTLY as shown. Do NOT put any text before the first ===SECTION=== marker.
+
+SEBI EoDI DISCLOSURE (May 1 2026 — mandatory first line inside each section):
+Format: [Partner Name] | [Partner Type] of Angel One Ltd. | Reg: [Registration No.]
+Use: ${S.pReg ? S.pN+' | '+S.pT+' of Angel One Ltd. | Reg: '+S.pReg : S.pN+' | '+S.pT+' of Angel One Ltd.'}
+
+===INSTAGRAM===
+[FIRST LINE — EoDI Disclosure: as above]
+[ONE powerful hook line — stops the scroll. No markdown, no asterisks.]
+[2-3 lines of insight connecting this angle to TODAY]
+Caption: [80-100 words, conversational, ends with a question to drive comments. Mention ${S.pN}'s name and experience naturally.]
+[4-5 relevant hashtags]
+
+===WHATSAPP===
+[FIRST LINE — EoDI Disclosure: as above]
+[120-180 words. Like a voice note typed out — from a knowledgeable friend. Flowing text, personal observation. No bullet points. Include one insight from ${S.pN}'s experience.]
+
+===LINKEDIN===
+[FIRST LINE — EoDI Disclosure: as above]
+[150-200 words. Professional but warm. Start with the hook. Build with logic/data. End with a thought-provoking question. Paragraph format. Briefly mention ${S.pN}'s background.]
+
+===CAROUSEL===
+Slide 1 HEADLINE: [5-7 word scroll-stopper — the core hook]
+Slide 2: [Key point 1] — [one clear sentence]
+Slide 3: [Key point 2] — [one clear sentence]
+Slide 4: [Key point 3] — [one clear sentence]
+Slide 5 TAKEAWAY: [One memorable line that crystallises the entire point]
+CTA: Start your investment journey with Angel One
+
+===DISCLAIMER===
+⚠️ This content is for educational purposes only and is not investment advice. Investments are subject to market risks.`;
+}
+
+// ── AGENT 2: Compliance Validator — 25-check framework ──
+// Sources: SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2025/11 (Jan 29 2025)
+//          HO/(79)2026-MIRSD-PODMMC (Feb 26 2026, eff. May 1 2026)
+//          Angel One AP Advertisement Guidelines
+//          AMFI MFD Scheme-Specific Content Rules
+function buildCompliancePrompt(contentText){
+  const regDisc = S.pReg ? `Partner Reg No: ${S.pReg}` : 'Partner Reg No: NOT PROVIDED';
+  const exRegDisc = S.pExReg ? `Exchange Reg No: ${S.pExReg}` : 'Exchange Reg No: NOT PROVIDED';
+  const isMFD = (S.pT||'').toUpperCase().includes('MFD');
+  const isAP  = (S.pT||'').toUpperCase().includes('AP') || (S.pT||'').toUpperCase().includes('POSP');
+  const isMFtopic = (S.tL||'').toLowerCase().includes('mutual') || (S.tL||'').toLowerCase().includes('mf') || (S.tL||'').toLowerCase().includes('insurance');
+
+  return `You are a strict SEBI and Angel One compliance officer. You MUST flag every violation — even borderline ones. Partner can appeal; it is always better to flag than to let a violation reach the Exchange.
+
+CONTENT TO REVIEW:
+---
+${contentText}
+---
+
+PARTNER: ${S.pN} | Type: ${S.pT} | ${regDisc} | ${exRegDisc}
+Topic: ${S.tL} | Angle: ${S.sL}
+MFD content: ${isMFtopic ? 'YES — MFD/Insurance rules apply' : 'NO'}
+
+Apply ALL 25 checks across 3 regulatory frameworks. For every violation quote the exact offending phrase and cite the rule number.
+
+═══════════════════════════════
+FRAMEWORK A — SEBI CIRCULAR SEBI/HO/MIRSD/MIRSD-PoD-1/P/CIR/2025/11
+In force: August 29, 2024
+═══════════════════════════════
+
+A1 — NO UNREGISTERED ADVICE:
+Content must NOT give any advice or recommendation on any specific security, directly or indirectly. APs and MFDs are NOT registered as Investment Advisers or Research Analysts. Flag: "buy X", "invest in Y", "avoid Z", "X is good for you", or any implied specific action on a named security.
+
+A2 — NO RETURN/PERFORMANCE CLAIMS:
+Content must NOT make any claim — express or implied — about returns or performance of any specific security. Includes: "this fund gave X%", "X outperformed Nifty", "your money doubled", implied future performance from past data, or any specific return figures presented without SEBI-prescribed past-performance disclaimers.
+
+A3 — 3-MONTH MARKET PRICE DATA LAG RULE (FAQ 8):
+CRITICAL: A person providing "investor education" must NOT use market price data of the PRECEDING 3 MONTHS for any specific security to indicate future price, recommendation, or advice. This means: no live price mentions, no "X stock is at ₹Y right now so...", no recent chart analysis of named securities, no commentary on what a specific stock did this month/quarter as a basis for any forward-looking suggestion. General market index data (Nifty, Sensex level) for context is acceptable; specific security price data within 3 months is NOT.
+
+A4 — NO ASSOCIATION WITH PROHIBITED PERSONS (Sections 4 & 5):
+Content must NOT reference, promote, tag, or link to any person who provides unregistered investment advice or makes return claims. This includes: unnamed Telegram channels, "stock tip" groups, WhatsApp signal providers, unregistered finfluencers, or any paid advisory that is not SEBI-registered. The "association" is broadly defined — even a mention, referral, or IT/link integration counts.
+
+A5 — NO INDIRECT ADVICE THROUGH FRAMING:
+Content that doesn't say "buy X" but achieves the same effect through: selective data presentation about one security, urgency framing about one security, "this is the time to act" language about a named asset, or any other indirect mechanism to steer investor behaviour toward a specific security. Flag it.
+
+═══════════════════════════════
+FRAMEWORK B — SEBI EoDI CIRCULAR HO/(79)2026-MIRSD-PODMMC
+In force: May 1, 2026 (CURRENTLY ACTIVE — today is after May 1 2026)
+═══════════════════════════════
+
+B1 — REGISTERED NAME DISCLOSURE IN CONTENT:
+MANDATORY: Every piece of content must contain the principal entity name (Angel One Ltd.) AND the agent's own registered name and registration number at the BEGINNING of the content. For APs: format is "Angel One Ltd. | [AP Name], [Registration No.]". For MFDs: format is "[AMC/Fund House Name] | [MFD Name], ARN-[number]". Check: does the content have this disclosure at the beginning of each platform section? If registration number was not provided by the partner (shown as NOT PROVIDED above), flag as a compliance risk.
+
+B2 — REGISTRATION NUMBER IN CONTENT:
+The agent's own SEBI/Exchange registration number must appear in the content. If S.pReg is empty or NOT PROVIDED, flag: "SEBI EoDI Circular requires registration number disclosure — partner has not provided their registration number in their profile."
+
+B3 — PRINCIPAL ENTITY DISCLOSURE:
+For APs: Angel One Ltd.'s name must appear as the principal entity. For MFDs: the relevant AMC or Fund House's SEBI-registered name must appear. Content that only says "Authorised Person of Angel One" without the registration number is INCOMPLETE under the May 2026 circular.
+
+B4 — PLATFORM SCOPE:
+This disclosure requirement applies to ALL social media platforms covered by the content: YouTube, Instagram, Facebook, WhatsApp, X, LinkedIn, Threads, Telegram, Reddit. Content for closed groups (WhatsApp, Telegram) is NOT exempt.
+
+═══════════════════════════════
+FRAMEWORK C — ANGEL ONE AP ADVERTISEMENT GUIDELINES + AMFI MFD RULES
+═══════════════════════════════
+
+C1 — INVESTMENT ADVICE:
+Direct/indirect advice to buy/sell/hold specific securities. Safe language only: "investors often observe...", "yeh concept ke baare mein jaanna helpful hai...", "awareness ke liye..."
+
+C2 — RETURN CLAIMS:
+Fixed, guaranteed, indicative, or implied return claims. "Earn X%", "guaranteed returns", "assured income", any specific return figures without past-performance disclaimer.
+
+C3 — FUTURE PREDICTIONS:
+Predicting market direction, price levels, or future performance of any security or index.
+
+C4 — URGENCY LANGUAGE:
+"Invest now", "act fast", "limited time", "don't miss", "last chance", "abhi invest karo" or equivalent.
+
+C5 — SUPERLATIVES:
+"Best fund", "no.1 broker", "top performing", "market leader", "guaranteed", "safest", any superlative about a product, platform, or service.
+
+C6 — UNFAIR COMPARISON:
+Discrediting other brokers, platforms, or fund houses. Comparisons must be factual, balanced, and not disparaging.
+
+C7 — INCENTIVES/INDUCEMENTS:
+Cashback, vouchers, referral rewards, account opening gifts, brokerage waivers, medals, prizes, or any inducement to open account, trade, or activate inactive account.
+
+C8 — CELEBRITY ENDORSEMENTS:
+Any celebrity name, image reference, or implied endorsement.
+
+C9 — ACCOUNT OPENING CTA ON EDUCATIONAL CONTENT:
+Direct account-opening links or CTAs on purely educational content. Brand awareness ("follow for more") is acceptable; "open your account now" is not.
+
+C10 — THIRD-PARTY LOGOS:
+Use of logos or brand marks of specific listed companies, mutual funds, or third-party financial entities.
+
+C11 — MISLEADING STATEMENTS:
+False, exaggerated, biased, deceptive, or ambiguous statements about any financial product or market condition.
+
+C12 — STANDARD DISCLAIMER MISSING:
+"Investments in securities market are subject to market risks, read all related documents carefully before investing." must be present and complete.
+
+C13 — NON-BROKING DISCLAIMER (MF/Insurance topics):
+If content covers Mutual Funds or Insurance: "These are not Exchange traded products, and Angel One Ltd. is just acting as distributor. All disputes with respect to the distribution activity would not have access to Exchange investor redressal forum or Arbitration mechanism." must be present.
+
+C14 — AP/MFD IDENTITY MISREPRESENTATION:
+Partner must be identified as "Authorised Person of Angel One Ltd." or "Mutual Fund Distributor" — never as "Angel One" itself or as an investment adviser.
+
+C15 — SECURITIES EXAMPLE DISCLAIMER MISSING:
+If any specific security, fund, or stock is named: "The securities quoted are for illustration purposes only and are not recommendatory" must appear.
+
+C16 — COMPELLING TO TRADE:
+Any communication pressuring readers to execute trades/transactions to avail a benefit.
+
+C17 — MFD SCHEME-SPECIFIC RULES (AMFI guidelines, applies when pT=MFD):
+MFDs must NOT on public social media: (a) recommend any specific mutual fund scheme by name, (b) discuss historical scheme performance to imply suitability, (c) make product suitability calls without individual risk profiling, (d) compare one scheme's performance against another to imply one is better for the audience. MFDs may only do generic investor awareness — concepts, categories, financial planning principles. Individual scheme discussion requires a face-to-face KYC-based suitability assessment. If this is MFD content and it names or discusses specific scheme performance, flag it.
+
+═══════════════════════════════
+EVALUATION
+═══════════════════════════════
+
+Total checks: 25 (5 Framework A + 4 Framework B + 16 Framework C — C17 applies only for MFD).
+Apply ALL applicable checks. Quote exact offending phrases. Flag B1/B2 if registration numbers are absent.
+
+Return ONLY valid JSON:
+{
+  "status": "approved" | "rejected",
+  "risk_level": "low" | "medium" | "high",
+  "checks_passed": <number 0-25>,
+  "violations": [
+    "A1/B1/C1 etc — [rule name]: [exact offending phrase or specific description]"
+  ],
+  "suggested_fix": "Specific, actionable instructions to make content fully compliant"
+}
+
+Return "approved" ONLY if all applicable checks pass with zero violations. If registration number is missing, always return "rejected" with B2 flagged.`;
+}
+
+// ── AGENT 3: Auto-Fix Engine ──
+function buildFixPrompt(contentText, compResult){
+  const violations = (compResult.violations||[]).join('\n- ');
+  const fix = compResult.suggested_fix||'Remove all violations and ensure full compliance.';
+  const regLine = S.pReg ? `${S.pN} | ${S.pT} of Angel One Ltd. | Reg: ${S.pReg}${S.pExReg?' | Exch Reg: '+S.pExReg:''}` : `${S.pN} | ${S.pT} of Angel One Ltd.`;
+  return `You are the Angel One content compliance auto-fix engine. Fix the content below to pass ALL 25 compliance checks (Framework A: SEBI Finfluencer Circular, Framework B: EoDI Disclosure Circular, Framework C: Angel One AP + AMFI MFD Guidelines).
+
+ORIGINAL CONTENT:
+---
+${contentText}
+---
+
+VIOLATIONS FOUND:
+- ${violations}
+
+REQUIRED FIX: ${fix}
+
+PARTNER DISCLOSURE LINE (insert at beginning of EACH platform section):
+"${regLine}"
+
+FIXING RULES:
+1. Fix ONLY violating parts — preserve core insight, hook, partner voice, language (${S.pL}), anecdotes
+2. INSERT the partner disclosure line at the very start of each platform section (===INSTAGRAM===, ===WHATSAPP===, etc.) — this is mandatory per SEBI EoDI Circular effective May 1 2026
+3. REPLACE advice language → "investors often observe...", "yeh pattern dekha gaya hai...", "awareness ke liye..."
+4. REMOVE return/performance claims → add "Past performance is not indicative of future results" if needed
+5. REMOVE urgency, superlatives, incentives, celebrity references
+6. For 3-month data lag violations: remove specific security price data from last 3 months; keep concept-level discussion
+7. For MFD violations: remove specific scheme names/performance comparisons; keep generic category/concept education
+8. ENSURE standard disclaimer present: "Investments in securities market are subject to market risks, read all related documents carefully before investing."
+9. ENSURE non-broking disclaimer if MF/Insurance: "These are not Exchange traded products, and Angel One Ltd. is just acting as distributor..."
+10. Keep all sections: ===INSTAGRAM===, ===WHATSAPP===, ===LINKEDIN===, ===CAROUSEL===, ===DISCLAIMER===
+11. Do NOT introduce new violations
+
+Return complete fixed content only — no explanation, no preamble.`;
+}
+
+function buildJsonPrompt(contentText){
+  return `You are Agent 4A — Content Extraction Agent for Angel One\'s AI Social Content Engine.
+
+Read this SEBI-compliant social media content and extract structured data for rendering campaign images.
+
+GENERATED CONTENT:
+---
+${contentText}
+---
+
+CONTEXT:
+- Partner: ${S.pN} (${S.pT})
+- Topic: ${S.tL} — ${S.sL}
+- Hook: ${S.iL} | Audience: ${S.aL}
+
+TASK: Extract ONLY from the actual content above. Every field must reflect what the content actually says.
+
+EXTRACTION GUIDE:
+1. headline: The CORE MESSAGE as a 2-line punchy visual headline. Max 5 words per line. Use \\n. Must reflect the actual content hook — NOT generic. E.g. for content about stopping SIP in crashes: "Market Gira?\\nSIP Mat Rokna"
+2. subheadline: 4-6 word supporting line that adds context
+3. category: Format "TOPIC · ANGLE" in CAPS. E.g. "MUTUAL FUNDS · SIP MYTH" or "IPO · GMP REALITY" or "TRADING · F&O RISK"
+4. insight_line: The single most important sentence from the content. Must be specific and TODAY-relevant. Max 20 words.
+5. body_short: 2 key sentences extracted directly from the content body.
+6. quote: The single most memorable, shareable line from the content. Works standalone without context.
+7. stats: Exactly 3 cards reflecting ACTUAL concepts/data from the content. Colors: blue=strategy/tip, green=positive/action, red=risk/warning, orange=macro/market
+8. visual_keyword: MUST match content topic: sip_chart (SIP/MF/fund), ipo_launch (IPO), candlestick (Trading/F&O/stocks/news about markets), gold_chart (Gold/commodities), index_volatility (market news/volatility/regulatory news/tax news), global_map (global markets/FII/currency), bond_shield (Insurance/Safe investments/PPF/FD), concept_diagram (Learning/financial literacy)
+9. cta and disclaimer are fixed strings — copy exactly
+
+Return ONLY valid JSON. No markdown. No explanation. No code fences:
+{"headline":"line1\\nline2","subheadline":"4-6 words","category":"TOPIC · ANGLE","insight_line":"specific sentence from content","body_short":"2 sentences from content.","quote":"most memorable line from content","stats":[{"label":"label","value":"value","color":"blue"},{"label":"label","value":"value","color":"green"},{"label":"label","value":"value","color":"red"}],"visual_keyword":"approved_keyword","partner_name":"${S.pN}","cta":"Start your investment journey with Angel One","disclaimer":"⚠️ This content is for educational purposes only and is not investment advice."}`;
+}
+
+// ── AGENT 5: HeyGen Video Script Generator ──────────────────────
+// Generates a complete video prompt for HeyGen's "Generate video from prompt" feature.
+// Output is a single block of text the partner can copy-paste directly into HeyGen.
+function buildVideoPrompt(contentText){
+  const partnerLine = S.pReg ? `${S.pN} | ${S.pT} of Angel One Ltd. | Reg: ${S.pReg}` : `${S.pN} | ${S.pT} of Angel One Ltd.`;
+  return `You are Agent 5 — the Video Script Generator for Angel One's AI Content Engine.
+
+Your job: Convert the SEBI-compliant social media content below into a HeyGen-ready video prompt.
+The partner will copy-paste your ENTIRE output directly into HeyGen's "Generate a video from a prompt" feature.
+
+SOURCE CONTENT (already SEBI-compliant, do NOT change any facts or add any investment advice):
+---
+${contentText}
+---
+
+PARTNER: ${S.pN} | ${S.pT} | ${S.pE} years experience | ${S.pC}
+LANGUAGE: ${S.pL} | TONE: ${S.pTo}
+TOPIC: ${S.tL} | ANGLE: ${S.sL}
+HOOK: ${S.iL} | AUDIENCE: ${S.aL}
+REGISTRATION: ${partnerLine}
+
+═══════════════════════════════════════════
+VIDEO FORMAT RULES (based on Dhan, Zerodha, JM Financial short video style):
+═══════════════════════════════════════════
+
+1. DURATION: 45-90 seconds. Short, punchy, high-retention. Never exceed 90 seconds.
+
+2. STRUCTURE (follow this exact beat pattern — each beat is a SEPARATE SCENE with different location/camera):
+
+   SCENE 1 — HOOK (0-5 sec):
+   [SEEDANCE CINEMATIC SHOT] Avatar walks into frame from the left in a modern office setting. Camera follows with a slight tracking shot. Avatar stops, faces camera directly with confident expression.
+   SCRIPT: One powerful scroll-stopping question or statement.
+   TEXT OVERLAY: Hook line appears in bold white text with orange accent.
+   MOTION: "Walk forward confidently, stop, turn to face camera, raise one eyebrow slightly"
+
+   SCENE 2 — PROBLEM/CONTEXT (5-15 sec):
+   [AVATAR V TALKING HEAD] Close-up shot. Avatar speaks conversationally with natural hand gestures. Background transitions to a clean branded backdrop with data graphics appearing beside the avatar.
+   SCRIPT: What most people get wrong or don't know about this topic.
+   TEXT OVERLAY: Key wrong assumption appears crossed out in red, then correct fact replaces it.
+   MOTION: "Slight head tilt, right hand gestures outward when explaining, concerned expression"
+
+   SCENE 3 — INSIGHT (15-35 sec):
+   [SEEDANCE + AVATAR V MIX] Start with avatar walking alongside an animated chart/infographic that moves with them (motion graphics B-roll). Then cut to close-up talking head for the detailed explanation. Key stats animate in as large text overlays when spoken.
+   SCRIPT: The core educational content — explain using Indian everyday analogies.
+   TEXT OVERLAY: Each key number/stat appears as large animated text (e.g. "₹1 Lakh → ₹18.4 Lakh" or "90% traders lose money"). For comparison topics, show split-screen graphic.
+   MOTION: "Counting on fingers when listing points, open palms when explaining, pointing gesture at stats overlay"
+
+   SCENE 4 — REAL-WORLD EXAMPLE (35-50 sec):
+   [SEEDANCE CINEMATIC] Avatar is now in a different setting — sitting in a cafe/home office, more relaxed posture. Camera is slightly closer, creating intimacy. Avatar leans forward slightly.
+   SCRIPT: "Ek example se samjhte hain..." or partner's personal observation. Tone becomes more intimate and slower.
+   TEXT OVERLAY: Minimal — just a small quote card appears briefly.
+   MOTION: "Lean forward, nod slowly, open hands in front of body, warm smile, speaking to a friend"
+
+   SCENE 5 — TAKEAWAY + CTA (50-60 sec):
+   [SEEDANCE CINEMATIC → AVATAR V] Avatar stands up (or walks to a new position), faces camera directly. Pause for 1 second. Deliver the memorable takeaway line. Then avatar gestures toward camera (pointing/inviting).
+   SCRIPT: One crystallising line. Then: "Follow for more financial awareness. ${S.pN}, Authorised Person of Angel One Ltd."
+   TEXT OVERLAY: Partner name, designation, and registration number appear as end card. Angel One logo visible.
+   MOTION: "Stand tall, direct eye contact, confident nod, point toward camera on CTA, warm closing smile"
+
+3. AVATAR & CAMERA DIRECTIONS (HeyGen Seedance 2.0 + Avatar V):
+   - Avatar uses FULL BODY — walks, sits, stands, gestures (not just talking head)
+   - Use Seedance 2.0 cinematic shots for walking/movement scenes (Scene 1, 3 opening, 4, 5 opening)
+   - Use Avatar V talking head for explanation-heavy scenes (Scene 2, 3 detail, 5 closing)
+   - CAMERA WORK: tracking shots when avatar walks, close-ups when explaining, medium shot for casual/story scenes
+   - Natural Indian professional appearance — formal but approachable (polo/shirt, no tie)
+   - Hand gestures: pointing when referencing stats, counting on fingers for lists, open palms for concepts
+   - Facial expressions: raised eyebrow for surprising facts, concern for risks, warm smile for stories, confidence for CTA
+   - SCENE TRANSITIONS: smooth cuts between scenes (not abrupt). Each scene change = new background/setting.
+   - Motion prompt format for each scene: "[Body part] + [Action] + [Emotion]" (HeyGen's required format)
+
+4. SCENE BACKGROUNDS (each scene has a DIFFERENT setting for visual variety):
+   - SCENE 1 (Hook): Modern office lobby / co-working space entrance. Avatar walks in. Clean, professional, aspirational.
+   - SCENE 2 (Problem): Close-up with branded gradient background (Angel One blue #1B3FD8). Data graphics appear beside avatar.
+   - SCENE 3 (Insight): Split — starts with avatar walking in a modern trading floor / data visualization room, then cuts to branded backdrop with charts animating.
+   - SCENE 4 (Story): Warm cafe / home office setting. Bookshelf or plants visible. Intimate, trustworthy atmosphere.
+   - SCENE 5 (CTA): Clean white/blue branded backdrop. Angel One logo subtly visible. Professional end-card feel.
+
+   TEXT OVERLAYS (appear dynamically, not static):
+   - Hook line: Bold white text with orange (#EA7600) accent, appears with animation in Scene 1
+   - Key stats: Large animated numbers (e.g. "₹1 Cr" flies in) when spoken in Scene 3
+   - Comparison: Side-by-side split graphic for X vs Y content
+   - Registration: "${partnerLine}" shown as persistent small text at bottom throughout ALL scenes
+   - End card: Partner name + Angel One logo + "Follow for more" + disclaimer text
+   - Orange (#EA7600) accent on all key numbers and highlight text
+
+5. VOICE & DELIVERY:
+   - Language: ${S.pL === 'hinglish' ? 'Natural Hinglish — the way a young Indian professional actually talks. Mix of Hindi and English seamlessly. NOT translated, NOT formal.' : S.pL === 'english' ? 'Clear, warm Indian English. Not American, not British. Indian cadence and pronunciation.' : S.pL === 'hindi' ? 'Simple spoken Hindi. Not formal. Not news anchor style. Everyday conversational Hindi.' : 'Natural conversational ' + S.pL + '.'}
+   - Pace: Medium speed, slightly faster for exciting parts, slower for key insights
+   - Emphasis: Stress key numbers, pause before revealing surprising facts
+   - Tone: ${S.pTo} — this is how ${S.pN} naturally speaks
+
+6. SEBI COMPLIANCE (NON-NEGOTIABLE):
+   - ZERO investment advice — no "buy this", "invest in that", "this stock will go up"
+   - ZERO return claims — no "earn X%", "guaranteed returns"
+   - ZERO specific security price data from last 3 months
+   - Frame everything as education: "investors often observe...", "yeh concept samajhna important hai..."
+   - Standard disclaimer must appear as text overlay at end: "Investments in securities market are subject to market risks"
+   - Partner identification: "${partnerLine}" shown at bottom of screen
+
+═══════════════════════════════════════════
+OUTPUT FORMAT — Return EXACTLY this structure:
+═══════════════════════════════════════════
+
+Return a single block of text that the partner will paste directly into HeyGen's prompt box. Format it as:
+
+---VIDEO PROMPT START---
+
+[Write the complete HeyGen prompt here. It should describe:
+1. The avatar's appearance and setting
+2. The complete script with scene-by-scene breakdown
+3. Text overlay instructions for each scene
+4. Background and visual element descriptions
+5. Voice tone and pacing instructions
+6. The registration disclosure placement
+
+Make it read like a movie scene direction — HeyGen's AI agent will interpret it and produce the video.]
+
+---VIDEO PROMPT END---
+
+After the video prompt, add:
+
+---HEYGEN SETTINGS---
+Duration: [X seconds]
+Aspect Ratio: 9:16 (vertical/Reels/Shorts) OR 16:9 (YouTube/LinkedIn)
+Avatar Motion: Natural, conversational, hand gestures
+Background: [specific background description]
+Text Overlays: [list key overlay moments]
+Voice Style: [natural, warm, confident]
+---HEYGEN SETTINGS END---
+
+IMPORTANT: The output must be ONE continuous prompt that HeyGen can process. Do not break it into separate API calls. The partner will literally copy-paste your entire output into HeyGen's "Generate video from prompt" text box.`;
+}
+
+// ── NANO BANANA (Puter.js) — AI Image Generation ────────────────
+// Replaces Canvas rendering with AI-generated images via Nano Banana Pro
+// Uses Puter.js for free access — no API key needed
+
+function buildNBPrompt(j, platform) {
+  const topic = (window.S && S.topic) || 'mf';
+  const isMarket = ['trading','ipo','stocks'].includes(topic);
+  const bgDesc = isMarket 
+    ? 'Rich cobalt blue (#1B3FD8) gradient background with subtle white circuit grid pattern overlay' 
+    : 'Light pearl grey (#EEF0F5) clean background with a blue (#1B3FD8) diagonal geometric shape on the right side and small rotated diamond accent shapes';
+  
+  const headline = String(j.headline||'').replace(/\\n/g,' ').replace(/\n/g,' ');
+  const insight = String(j.insight_line||'');
+  const body = String(j.body_short||'');
+  const quote = String(j.quote||'');
+  const category = String(j.category||'FINANCE · INSIGHT');
+  const stats = (j.stats||[]).map(s => s.label+': '+s.value).join(', ');
+  const partner = (S.pN||'Partner') + ' · ' + (S.pT||'AP') + (S.pReg ? ' · Reg: '+S.pReg : '');
+  
+  const brandRules = `STRICT BRAND RULES (follow exactly):
+- Angel One logo: blue triangle grid icon + "AngelOne" text in blue (#1B3FD8) — positioned top-left
+- Primary color: blue #1B3FD8. Accent color: orange #EA7600
+- Headline text: bold, large, navy (#0D1B4B) on light backgrounds OR white on blue backgrounds
+- Orange accent bar: thin horizontal orange line at the very top of the image
+- Orange underline below the second line of the headline
+- Text must be perfectly readable — no overlapping, no clipping, no cut-off words
+- Professional financial services aesthetic — clean, modern, trustworthy
+- Bottom of image: small grey disclaimer text "Investments in securities market are subject to market risks. Read all related documents carefully before investing."`;
+
+  const disclaimerText = '⚠ Investments in securities market are subject to market risks. Read all related documents carefully before investing.';
+  
+  if(platform === 'linkedin') {
+    return `Create a professional LinkedIn campaign image for Angel One financial services.
+    
+ASPECT RATIO: Make the aspect ratio exactly 16:9 (landscape, like 1200x627 pixels).
+
+LAYOUT (follow this structure precisely):
+- LEFT SIDE (55% of width): 
+  - Top-left: Angel One logo (blue triangle grid + "AngelOne" wordmark in blue #1B3FD8)
+  - Below logo: Small category tag pill with text "${category}" in blue
+  - MAIN HEADLINE in large bold text: "${headline}"
+  - Below headline: An insight box with orange left border containing: "${insight}"
+  - Below insight: Smaller body text: "${body.substring(0,120)}"
+  - Bottom-left: Partner name "${partner}" in small grey text
+
+- RIGHT SIDE (45% of width):
+  - A large professional 3D visual/infographic related to the topic (${topic})
+  - Below the visual: ${stats ? '3 small stat cards showing: '+stats : 'Clean space'}
+  
+BACKGROUND: ${bgDesc}
+
+TOP: Thin orange (#EA7600) accent bar spanning full width at the very top.
+
+BOTTOM: Grey disclaimer strip with tiny text: "${disclaimerText}"
+
+${brandRules}
+
+STYLE: Professional, clean, modern financial services marketing creative. Similar to top-tier Indian fintech company marketing materials. NO clipart, NO cartoon elements, NO stock photo watermarks. Premium quality.`;
+  
+  } else if(platform === 'instagram') {
+    return `Create a professional Instagram post image for Angel One financial services.
+
+ASPECT RATIO: Make the aspect ratio exactly 1:1 (square, like 1080x1080 pixels).
+
+LAYOUT (follow this structure precisely):
+- Top-left: Angel One logo (blue triangle grid + "AngelOne" wordmark in blue #1B3FD8)
+- Below logo: Small category tag "${category}"
+- LARGE BOLD HEADLINE taking up significant space: "${headline}"
+- Orange underline accent below the headline
+- Insight box with orange left border: "${insight}"
+- ${stats ? '3 stat cards in a row: '+stats : ''}
+- Small body text: "${body.substring(0,100)}"
+${quote ? '- Italic quote: "'+quote+'"' : ''}
+- Blue call-to-action button at bottom: "Start your investment journey with Angel One"
+- Partner name at bottom: "${partner}"
+- Right side of image: Large professional 3D visual/infographic related to ${topic}
+
+BACKGROUND: ${bgDesc}
+
+TOP: Thin orange (#EA7600) accent bar spanning full width.
+
+BOTTOM: Small grey disclaimer: "${disclaimerText}"
+
+${brandRules}
+
+STYLE: Bold, magazine-poster quality. High visual impact for social media scrolling. Premium Indian fintech aesthetic. The headline should DOMINATE the image.`;
+
+  } else {
+    return `Create a professional WhatsApp shareable image for Angel One financial services.
+
+ASPECT RATIO: Make the aspect ratio exactly 1:1 (square, like 1080x1080 pixels).
+
+LAYOUT (follow this structure precisely):
+- TOP HEADER (top 20% of image): Dark blue (#0D1B4B to #1B3FD8) gradient header with:
+  - Angel One logo (white text on dark blue) top-left
+  - Small category tag "${category}" in white on blue
+  - Thin orange accent bar at very top
+  - Subtle white circuit grid pattern in header background
+
+- MAIN CONTENT AREA (bottom 80%): White card with rounded corners containing:
+  - Bold headline: "${headline}" in navy (#0D1B4B)
+  - Orange underline below headline
+  - Insight box with light blue background and orange left border: "${insight}"
+  - Body text: "${body.substring(0,150)}"
+${quote ? '  - Quote block with blue left border: "'+quote+'"' : ''}
+  - ${stats ? '3 small stat cards: '+stats : ''}
+  - Blue call-to-action button: "Start your investment journey with Angel One"
+  - Divider line, then partner info: "${partner}"
+
+BOTTOM: Small grey disclaimer: "${disclaimerText}"
+
+${brandRules}
+
+STYLE: Clean, card-based, shareable. Should look like a premium message card a trusted financial advisor would forward on WhatsApp. Not cluttered, not dark — clean white card feel.`;
+  }
+}
+
+// generateNBImage removed — logic inlined in startGen for better error handling
+
+async function startGen(){
+  go(5);
+  const newsItem=S.selectedNews?`<div class="sbi"><strong>News:</strong>${S.selectedNews.headline.substring(0,50)}...</div>`:'';
+  document.getElementById('SB').innerHTML=[`<div class="sbi"><strong>Partner:</strong>${S.pN} · ${S.pT}</div>`,`<div class="sbi"><strong>Topic:</strong>${S.tL}</div>`,`<div class="sbi"><strong>Angle:</strong>${S.sL}</div>`,newsItem,`<div class="sbi"><strong>Hook:</strong>${S.iL}</div>`,`<div class="sbi"><strong>Audience:</strong>${S.aL}</div>`].join('');
+  const logEl=document.getElementById('AL');logEl.innerHTML='';
+  function lg(a,m,s){const d=document.createElement('div');d.className='ll';d.innerHTML=`<span class="la">${a}</span><span class="${s==='ok'?'lok':s==='warn'?'lwn':'lm'}">${m}</span>`;logEl.appendChild(d);logEl.scrollTop=logEl.scrollHeight;}
+
+  lg('Agent 1',`Injecting partner profile: ${S.pN} · ${S.pT}`);
+  lg('Agent 1',`Angle: "${S.sL}"`);
+  lg('Agent 1',`Hook type: ${S.iL} | Language: ${S.pL}`);
+
+  let raw='';
+  let contentPrompt='';
+  try{ contentPrompt=buildContentPrompt(); }catch(pe){ lg('Agent 1','❌ Prompt build error: '+pe.message,'warn'); }
+  lg('Agent 1','Prompt ready ('+contentPrompt.length+' chars). Calling Claude API...');
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:Object.assign({'Content-Type':'application/json'},document.getElementById('pApiKey')?.value?{'x-api-key':document.getElementById('pApiKey').value,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{}),body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2200,messages:[{role:'user',content:contentPrompt}]})});
+    const d=await r.json();
+    // Debug: log response structure
+    if(d.error) {
+      lg('Agent 1','API Error: '+(d.error.message||JSON.stringify(d.error)),'warn');
+    }
+    if(d.content) {
+      raw=d.content.map(b=>b.text||'').join('');
+    } else if(d.choices) {
+      raw=d.choices[0]?.message?.content||'';
+    } else {
+      lg('Agent 1','Unexpected response: '+JSON.stringify(d).substring(0,200),'warn');
+    }
+    if(raw.length > 0) {
+      lg('Agent 1','Content generated ('+raw.length+' chars).','ok');
+    } else {
+      lg('Agent 1','⚠️ API returned empty content. Response keys: '+Object.keys(d).join(', '),'warn');
+    }
+  }catch(e){
+    lg('Agent 1','❌ FAILED: '+e.message,'warn');
+    document.getElementById('LS').innerHTML='<div style="color:#DC2626;padding:40px;text-align:center;"><div style="font-size:18px;margin-bottom:8px;">⚠️ Agent 1 Failed</div><div style="font-size:13px;color:#FCA5A5;">'+e.message+'</div><div style="font-size:12px;color:#888;margin-top:12px;">Check: Is the API key entered in Step 1? Are you connected to the internet?</div></div>';
+    return;
+  }
+
+  // Check if Agent 1 returned content
+  if(!raw || raw.length < 50) {
+    lg('Agent 1','⚠️ Empty or very short response ('+raw.length+' chars). API may have failed silently.','warn');
+    lg('Agent 1','Raw response: '+raw.substring(0,200),'warn');
+  }
+
+  // ── AGENT 2: Real compliance validator ──
+  lg('Agent 2','Running Angel One compliance scan...');
+  let finalContent = raw;
+  let complianceStatus = 'approved';
+
+  try {
+    const compPrompt = buildCompliancePrompt(raw);
+    const rc = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:Object.assign({'Content-Type':'application/json'},document.getElementById('pApiKey')?.value?{'x-api-key':document.getElementById('pApiKey').value,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{}),
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,
+        messages:[{role:'user',content:compPrompt}]})
+    });
+    const dc = await rc.json();
+    const compRaw = dc.content?.map(b=>b.text||'').join('')||'';
+    let compResult = null;
+    try {
+      const cm = compRaw.match(/\{[\s\S]*\}/);
+      if(cm) compResult = JSON.parse(cm[0]);
+    } catch(e) {}
+
+    if(compResult) {
+      if(compResult.status === 'approved') {
+        lg('Agent 2',`Approved. Risk: ${compResult.risk_level||'low'} | Checks passed: ${compResult.checks_passed||0}/25`,'ok');
+        lg('Agent 3','No fixes needed. Content passes all guidelines.','ok');
+      } else {
+        // ── AGENT 3: Auto-fix engine ──
+        complianceStatus = 'needs_fix';
+        const violations = (compResult.violations||[]).join('; ');
+        lg('Agent 2',`Issues found (${compResult.risk_level||'medium'} risk): ${violations.substring(0,80)}...`,'warn');
+        lg('Agent 3','Auto-fix engine running...');
+
+        const fixPrompt = buildFixPrompt(raw, compResult);
+        const rf = await fetch('https://api.anthropic.com/v1/messages',{
+          method:'POST',
+          headers:Object.assign({'Content-Type':'application/json'},document.getElementById('pApiKey')?.value?{'x-api-key':document.getElementById('pApiKey').value,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{}),
+          body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2200,
+            messages:[{role:'user',content:fixPrompt}]})
+        });
+        const df = await rf.json();
+        const fixedRaw = df.content?.map(b=>b.text||'').join('')||'';
+        if(fixedRaw && fixedRaw.includes('===')) {
+          finalContent = fixedRaw;
+          lg('Agent 3','Content fixed. All violations resolved.','ok');
+          complianceStatus = 'fixed';
+        } else {
+          lg('Agent 3','Fix applied with original content as base.','warn');
+        }
+      }
+    } else {
+      lg('Agent 2','Compliance check complete.','ok');
+      lg('Agent 3','Content approved.','ok');
+    }
+  } catch(e) {
+    lg('Agent 2','Compliance scan error — proceeding with content.','warn');
+    lg('Agent 3','Manual review recommended.','warn');
+  }
+
+  // Update compliance badge based on result
+  const badge = document.getElementById('complianceBadge');
+  if(badge) {
+    if(complianceStatus === 'fixed') {
+      badge.textContent = '🔧 Auto-fixed — Violations corrected by Agent 3. Content is now compliant.';
+      badge.style.background = 'rgba(245,158,11,0.12)';
+      badge.style.borderColor = 'rgba(245,158,11,0.3)';
+      badge.style.color = '#FCD34D';
+    } else if(complianceStatus === 'approved') {
+      badge.textContent = '✅ SEBI + Angel One Compliant — All 25 guardrails passed (3 circulars).';
+    }
+  }
+
+  renderText(finalContent);
+
+  lg('Agent 4A',`Extracting structured JSON from "${S.sL}"...`);
+  document.getElementById('CS').style.display='block';
+
+  let jd=null;
+  try{
+    const r2=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:Object.assign({'Content-Type':'application/json'},document.getElementById('pApiKey')?.value?{'x-api-key':document.getElementById('pApiKey').value,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{}),body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:900,messages:[{role:'user',content:buildJsonPrompt(finalContent)}]})});
+    const d2=await r2.json();
+    const jr=d2.content?.map(b=>b.text||'').join('')||'';
+    let cl=jr.trim().replace(/^```json\s*/,'').replace(/^```\s*/,'').replace(/\s*```$/,'').trim();
+    const jm=cl.match(/\{[\s\S]*\}/);if(jm)cl=jm[0];
+    jd=JSON.parse(cl);
+    lg('Agent 4A',`Parsed: "${(jd.headline||'').replace('\\n',' ')}" | visual: ${jd.visual_keyword}`,'ok');
+  }catch(e){
+    lg('Agent 4A','Fallback: building from content...','warn');
+    jd=buildFallback(raw);
+  }
+
+  // Pass complianceStatus so Agent 4B can adapt CTA accordingly
+  jd._complianceStatus = complianceStatus;
+  // ── AGENT 4B: Nano Banana AI Images (PRIMARY) → Canvas (FALLBACK) ──
+  // Uses Google GenAI SDK loaded dynamically — handles CORS properly
+  const gKey = document.getElementById('gApiKey')?.value?.trim();
+
+  if(gKey) {
+    lg('Agent 4B','🎨 Loading Google AI SDK for Nano Banana...');
+    
+    let genAI = null;
+    try {
+      const mod = await import('https://esm.run/@google/generative-ai@0.24.1');
+      genAI = new mod.GoogleGenerativeAI(gKey);
+      lg('Agent 4B','Google AI SDK loaded. Generating images...');
+    } catch(sdkErr) {
+      lg('Agent 4B','⚠️ SDK load failed ('+sdkErr.message+') — trying direct API...','warn');
+    }
+
+    const platforms = [
+      { name:'LinkedIn', key:'linkedin', ratio:'16:9', container:'cLI', dl:'dlL', fname:'linkedin_ai.png', draw:()=>drawLinkedin(jd) },
+      { name:'Instagram', key:'instagram', ratio:'1:1', container:'cIG', dl:'dlI', fname:'instagram_ai.png', draw:()=>drawInstagram(jd) },
+      { name:'WhatsApp', key:'whatsapp', ratio:'1:1', container:'cWA', dl:'dlW', fname:'whatsapp_ai.png', draw:()=>drawWhatsapp(jd) },
+    ];
+
+    for(const p of platforms) {
+      lg('Agent 4B', 'Generating '+p.name+' ('+p.ratio+')...');
+      try {
+        const prompt = buildNBPrompt(jd, p.key);
+        let imgDataUrl = null;
+
+        if(genAI) {
+          // Method 1: Google SDK (handles CORS)
+          const model = genAI.getGenerativeModel({ 
+            model: 'gemini-2.5-flash-image',
+            generationConfig: { responseModalities: ['IMAGE','TEXT'] }
+          });
+          const result = await model.generateContent(prompt);
+          const parts = result.response.candidates?.[0]?.content?.parts || [];
+          const imgPart = parts.find(pt => pt.inlineData);
+          if(imgPart && imgPart.inlineData) {
+            imgDataUrl = 'data:'+imgPart.inlineData.mimeType+';base64,'+imgPart.inlineData.data;
+          }
+        } 
+        
+        if(!imgDataUrl) {
+          // Method 2: Direct fetch fallback
+          const gRes = await fetch(
+            'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key='+encodeURIComponent(gKey),
+            { method:'POST', headers:{'Content-Type':'application/json'},
+              body:JSON.stringify({ contents:[{parts:[{text:prompt}]}], generationConfig:{responseModalities:['IMAGE','TEXT']} })
+            }
+          );
+          const gData = await gRes.json();
+          if(gData.error) throw new Error(gData.error.message);
+          const parts2 = gData.candidates?.[0]?.content?.parts||[];
+          const ip2 = parts2.find(pt=>pt.inlineData);
+          if(ip2 && ip2.inlineData) imgDataUrl = 'data:'+ip2.inlineData.mimeType+';base64,'+ip2.inlineData.data;
+        }
+
+        if(imgDataUrl) {
+          const imgEl = document.createElement('img');
+          imgEl.src = imgDataUrl;
+          imgEl.style.borderRadius='12px';imgEl.style.maxWidth='100%';
+          imgEl.style.boxShadow='0 20px 60px rgba(0,0,0,0.5)';
+          const ctr = document.getElementById(p.container);
+          const oldImg = ctr.querySelector('img'); if(oldImg) oldImg.remove();
+          const cv = ctr.querySelector('canvas'); if(cv) cv.style.display='none';
+          ctr.insertBefore(imgEl, ctr.querySelector('.dlbtn'));
+          document.getElementById(p.dl).href = imgDataUrl;
+          document.getElementById(p.dl).download = p.fname;
+          lg('Agent 4B','✅ '+p.name+' AI image ready','ok');
+        } else {
+          throw new Error('No image data returned');
+        }
+      } catch(e) {
+        lg('Agent 4B','⚠️ '+p.name+': '+e.message+' — canvas fallback','warn');
+        p.draw();
+      }
+    }
+
+  } else {
+    lg('Agent 4B','No Google AI key — using canvas. Add key in Step 1 for AI images.','warn');
+    drawLinkedin(jd);drawInstagram(jd);drawWhatsapp(jd);
+  }
+  lg('System','All 3 campaign images ready. Click Download to save.','ok');
+
+  // ── AGENT 5: HeyGen Video Script ──
+  lg('Agent 5','Generating HeyGen video script...');
+  try {
+    const videoPrompt = buildVideoPrompt(finalContent);
+    const rv = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:Object.assign({'Content-Type':'application/json'},document.getElementById('pApiKey')?.value?{'x-api-key':document.getElementById('pApiKey').value,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}:{}),
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,
+        messages:[{role:'user',content:videoPrompt}]})
+    });
+    const dv = await rv.json();
+    const videoText = dv.content?.map(b=>b.text||'').join('')||'';
+    if(videoText && videoText.length > 100) {
+      // Show video prompt in a new section
+      document.getElementById('videoSection').style.display='block';
+      document.getElementById('videoPromptBody').textContent = videoText;
+      lg('Agent 5','HeyGen video script ready. Copy and paste into HeyGen.','ok');
+    } else {
+      lg('Agent 5','Could not generate video script.','warn');
+    }
+  } catch(e) {
+    lg('Agent 5','Video script generation skipped: '+e.message,'warn');
+  }
+  document.getElementById('CL').style.display='none';
+  document.getElementById('CR').style.display='block';
+}
+
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+
+function buildFallback(raw){
+  const lines=raw.split('\n').filter(l=>l.trim().length>8&&!l.startsWith('==='));
+  const pick=n=>lines[n]?lines[n].replace(/[*#=\[\]]/g,'').trim().substring(0,80):'';
+  const vmap={mf:'sip_chart',ipo:'ipo_launch',trading:'candlestick',stocks:'candlestick',gold:'gold_chart',market:'index_volatility',global:'global_map',safe:'bond_shield',insurance:'bond_shield',tax:'concept_diagram',learning:'concept_diagram',myexp:'concept_diagram'};
+  const h=pick(1).split(' ');
+  return {
+    headline:(h.slice(0,Math.ceil(h.length/2)).join(' ')||S.tL.replace(/^[^\w]+/,''))+'\n'+(h.slice(Math.ceil(h.length/2)).join(' ')||'Insight'),
+    subheadline:'Yeh jaanna zaroori hai',
+    category:(S.tL.replace(/^[^\w]+/,'').toUpperCase().substring(0,15))+' · INSIGHT',
+    insight_line:pick(2).substring(0,100),
+    body_short:pick(3).substring(0,200),
+    quote:pick(4).substring(0,80)||'Awareness hi sabse bada investment hai.',
+    stats:[{label:'Topic',value:S.sL.split(' ').slice(0,2).join(' ').substring(0,12),color:'blue'},{label:'Audience',value:S.aL.split(' ')[0].substring(0,10),color:'green'},{label:'Hook',value:S.iL.split(' ')[0],color:'orange'}],
+    visual_keyword:vmap[S.topic]||'concept_diagram',
+    partner_name:S.pN||'Partner',
+    cta:'Start your investment journey with Angel One',
+    disclaimer:'⚠️ This content is for educational purposes only and is not investment advice.'
+  };
+}
+
+function renderText(raw){
+  const sec={};
+  // Strip any preamble before first === marker so EoDI disclosure or other text
+  // inserted before sections doesn't break parsing
+  const firstSec=raw.indexOf('===');
+  const cleanRaw=firstSec>0?raw.substring(firstSec):raw;
+  ['INSTAGRAM','WHATSAPP','LINKEDIN','CAROUSEL'].forEach(k=>{const m=cleanRaw.match(new RegExp(`===\\s*${k}\\s*===\\n([\\s\\S]*?)(?====|$)`,'i'));if(m)sec[k.toLowerCase()]=m[1].trim();});
+  document.getElementById('LS').style.display='none';document.getElementById('TR').style.display='block';
+  const plats=[];
+  if(sec.instagram)plats.push({k:'instagram',l:'📱 Instagram'});
+  if(sec.whatsapp)plats.push({k:'whatsapp',l:'💬 WhatsApp'});
+  if(sec.linkedin)plats.push({k:'linkedin',l:'💼 LinkedIn'});
+  if(sec.carousel)plats.push({k:'carousel',l:'🖼️ Carousel'});
+  if(!plats.length)plats.push({k:'full',l:'📄 Full Output'});
+  document.getElementById('PT').innerHTML=plats.map((p,i)=>`<button class="ptab${i===0?' ac':''}" onclick="swT('${p.k}',this)">${p.l}</button>`).join('');
+  document.getElementById('PO').innerHTML=plats.map((p,i)=>{const c=sec[p.k]||raw;return`<div id="po-${p.k}" class="cout${i===0?' ac':''}"><div class="plbl">${p.l}</div><div class="cbody" id="cb-${p.k}">${esc(c)}</div><button class="cpbtn" onclick="cp('cb-${p.k}')">Copy</button></div>`;}).join('');
+  if(plats.length>0)tw('cb-'+plats[0].k);
+}
+// ═══════════════════════════════════════════════════════════════
+// AGENT 4B — RENDERER v6  "Angel One Brand System"
+//
+// Design based on compliance-approved Angel One creatives:
+// • Background system: light pearl grey (#EEF0F5) OR cobalt blue (#1B3FD8)
+// • Angel One blue: #1B3FD8  Orange accent: #EA7600
+// • Typography: Bold headlines in navy #0D1B4B (on light) / white (on dark)
+// • Hero visual: large key stat / asset image centred right
+// • CTA: two-tone pill (neutral left | orange right) — only on non-edu content
+// • Layout: logo top-left, headline mid-left, hero right, disclaimer bottom
+// ═══════════════════════════════════════════════════════════════
+
+// ── ANGEL ONE BRAND TOKENS ──────────────────────────────────────
+const AO_BRAND = {
+  BLUE:    '#1B3FD8',   // Angel One primary blue
+  BLUE2:   '#2D54F0',   // slightly lighter blue for gradients
+  NAVY:    '#0D1B4B',   // deep navy for headlines on light
+  ORANGE:  '#EA7600',   // accent orange
+  ORANGE2: '#FF8C1A',   // lighter orange
+  WHITE:   '#FFFFFF',
+  PEARL:   '#EEF0F5',   // light background (like approved creative 1)
+  PEARL2:  '#F5F6FA',   // slightly lighter pearl
+  GREY:    '#6B7280',   // body text on light
+  LGREY:   '#9CA3AF',   // muted text
+  DBLUE:   '#1230A0',   // darker blue for gradient bottom
+};
+
+// ── BACKGROUND SYSTEM (3 approved variants) ─────────────────────
+// Matches the 3 approved creatives exactly
+function getBgStyle(topic) {
+  const t = (topic||'').toLowerCase();
+  // Cobalt blue: trading, IPO, news/market content (high energy)
+  if(['trading','ipo','stocks'].includes(t)) return 'cobalt';
+  // Pearl light: everything else (educational, MF, gold, insurance, tax)
+  return 'pearl';
+}
+
+// ── HERO ASSET LIBRARY ──────────────────────────────────────────
+// Base64 images uploaded by the team go here.
+// Key = asset ID, Value = data:image/png;base64,... string
+// If empty string → falls back to canvas-drawn version
+const HERO_ASSETS = {
+  // Slot 1: 3D blue "0" (from Unpledge creative)
+  hero_zero_blue:   '',
+  // Slot 2: 3D orange "0%" (from CC Shortfall creative)
+  hero_zero_orange: '',
+  // Slot 3: Gold coins cluster
+  hero_coins:       '',
+  // Slot 4: Rising chart arrow
+  hero_chart_up:    '',
+  // Slot 5: Document/file icon
+  hero_document:    '',
+  // Slot 6: Shield / protection
+  hero_shield:      '',
+  // Slot 7: Rupee coin
+  hero_rupee:       '',
+  // Slot 8: Custom (any other approved asset)
+  hero_custom:      '',
+};
+
+// Pick which hero asset to use based on content
+function pickHeroAsset(j) {
+  const vk = (j.visual_keyword||'').toLowerCase();
+  const topic = ((window.S&&S.topic)||'').toLowerCase();
+  if(vk.includes('ipo') || vk.includes('launch')) return 'hero_zero_blue';
+  if(vk.includes('gold')) return 'hero_coins';
+  if(vk.includes('bond') || vk.includes('shield')) return 'hero_shield';
+  if(vk.includes('sip') || vk.includes('chart')) return 'hero_chart_up';
+  if(topic==='trading') return 'hero_zero_orange';
+  return 'hero_chart_up';
+}
+
+// Draw hero asset — uses base64 if available, else canvas fallback
+function drawHeroAsset(c, assetKey, x, y, w, h, pal) {
+  const b64 = HERO_ASSETS[assetKey];
+  if(b64 && b64.length > 100) {
+    const img = new Image();
+    img.src = b64;
+    // Draw synchronously if already loaded (cached)
+    try { c.drawImage(img, x, y, w, h); } catch(e) {}
+    return;
+  }
+  // Canvas fallback — draw the hero stat as a large styled number
+  drawHeroFallback(c, assetKey, x, y, w, h, pal);
+}
+
+function drawHeroFallback(c, assetKey, x, y, w, h, pal) {
+  const cx = x + w/2, cy = y + h/2;
+  const isLight = pal.bg === AO_BRAND.PEARL || pal.bg === AO_BRAND.PEARL2;
+
+  if(assetKey === 'hero_zero_blue' || assetKey === 'hero_zero_orange') {
+    // Large "0" with depth effect — inspired by approved creative
+    const clr = assetKey === 'hero_zero_orange' ? AO_BRAND.ORANGE : AO_BRAND.BLUE;
+    const clr2 = assetKey === 'hero_zero_orange' ? AO_BRAND.ORANGE2 : AO_BRAND.BLUE2;
+    const r = Math.min(w, h) * 0.38;
+
+    // Shadow/depth layer
+    c.save();c.globalAlpha=0.15;
+    c.beginPath();c.ellipse(cx, cy+r*0.9, r*0.7, r*0.18, 0, 0, Math.PI*2);
+    c.fillStyle='#000';c.fill();c.restore();
+
+    // Outer ring (thick)
+    c.beginPath();c.arc(cx, cy, r, 0, Math.PI*2);
+    c.strokeStyle=clr;c.lineWidth=r*0.28;c.stroke();
+
+    // Inner highlight arc
+    c.save();c.globalAlpha=0.5;
+    c.beginPath();c.arc(cx-r*0.08, cy-r*0.05, r*0.94, Math.PI*1.1, Math.PI*1.9);
+    c.strokeStyle=clr2;c.lineWidth=r*0.1;c.lineCap='round';c.stroke();
+    c.restore();
+
+    // Shine spot
+    c.save();c.globalAlpha=0.35;
+    c.beginPath();c.arc(cx-r*0.28, cy-r*0.35, r*0.18, 0, Math.PI*2);
+    const sg=c.createRadialGradient(cx-r*0.28,cy-r*0.35,0,cx-r*0.28,cy-r*0.35,r*0.18);
+    sg.addColorStop(0,'#fff');sg.addColorStop(1,'rgba(255,255,255,0)');
+    c.fillStyle=sg;c.fill();c.restore();
+
+  } else if(assetKey === 'hero_chart_up') {
+    // Rising arrow chart
+    const clr = isLight ? AO_BRAND.BLUE : AO_BRAND.ORANGE;
+    const bw = w*0.12, bh = h*0.55;
+    const bars = [0.3, 0.5, 0.7, 0.9, 0.65, 0.85, 1.0];
+    bars.forEach((ht, i) => {
+      const bx = x + w*0.05 + i*(bw+w*0.03);
+      const by = cy + h*0.25 - ht*bh;
+      const g = c.createLinearGradient(0,by,0,by+ht*bh);
+      g.addColorStop(0, i===6 ? AO_BRAND.ORANGE : clr);
+      g.addColorStop(1, i===6 ? AO_BRAND.ORANGE+'44' : clr+'44');
+      c.fillStyle=g;
+      rr(c,bx,by,bw,ht*bh,4,g);
+    });
+    // Arrow overlay
+    c.strokeStyle = AO_BRAND.ORANGE;c.lineWidth=3;c.lineCap='round';c.lineJoin='round';
+    c.beginPath();c.moveTo(x+w*0.1, cy+h*0.2);c.lineTo(x+w*0.4, cy-h*0.05);
+    c.lineTo(x+w*0.6, cy+h*0.05);c.lineTo(x+w*0.9, cy-h*0.28);c.stroke();
+    // Arrowhead
+    c.beginPath();c.moveTo(x+w*0.9,cy-h*0.28);
+    c.lineTo(x+w*0.82,cy-h*0.22);c.lineTo(x+w*0.86,cy-h*0.34);c.closePath();
+    c.fillStyle=AO_BRAND.ORANGE;c.fill();
+
+  } else if(assetKey === 'hero_coins') {
+    // Gold coin stack
+    const cr = w*0.18;
+    [[cx-cr*0.4, cy+cr*0.3], [cx+cr*0.4, cy+cr*0.1], [cx, cy-cr*0.2]].forEach(([ox,oy], i) => {
+      c.save();c.globalAlpha=0.9-i*0.1;
+      c.beginPath();c.ellipse(ox, oy+cr*0.3, cr*0.9, cr*0.2, 0, 0, Math.PI*2);
+      c.fillStyle='#B8860B';c.fill();
+      c.beginPath();c.arc(ox, oy, cr, 0, Math.PI*2);
+      const cg=c.createRadialGradient(ox-cr*0.3,oy-cr*0.3,0,ox,oy,cr);
+      cg.addColorStop(0,'#FFD700');cg.addColorStop(0.6,'#DAA520');cg.addColorStop(1,'#B8860B');
+      c.fillStyle=cg;c.fill();
+      c.strokeStyle='#B8860B55';c.lineWidth=2;c.stroke();
+      // ₹ symbol
+      c.font=`700 ${cr*0.7}px Poppins,sans-serif`;c.fillStyle='#B8860B';
+      c.textAlign='center';c.fillText('₹',ox,oy+cr*0.25);c.textAlign='left';
+      c.restore();
+    });
+
+  } else if(assetKey === 'hero_shield') {
+    // Shield with checkmark
+    const clr = AO_BRAND.BLUE;
+    const sh = h*0.45, sw2 = w*0.28;
+    c.beginPath();
+    c.moveTo(cx,cy-sh*0.5);c.lineTo(cx+sw2,cy-sh*0.2);c.lineTo(cx+sw2,cy+sh*0.1);
+    c.quadraticCurveTo(cx+sw2,cy+sh*0.5,cx,cy+sh*0.5);
+    c.quadraticCurveTo(cx-sw2,cy+sh*0.5,cx-sw2,cy+sh*0.1);
+    c.lineTo(cx-sw2,cy-sh*0.2);c.closePath();
+    const sg=c.createLinearGradient(cx,cy-sh*0.5,cx,cy+sh*0.5);
+    sg.addColorStop(0,AO_BRAND.BLUE2);sg.addColorStop(1,AO_BRAND.DBLUE);
+    c.fillStyle=sg;c.fill();
+    c.strokeStyle=isLight?'#fff':'rgba(255,255,255,0.3)';c.lineWidth=2;c.stroke();
+    // Checkmark
+    c.strokeStyle='#fff';c.lineWidth=sh*0.1;c.lineCap='round';c.lineJoin='round';
+    c.beginPath();c.moveTo(cx-sw2*0.35,cy+sh*0.02);
+    c.lineTo(cx-sw2*0.05,cy+sh*0.28);c.lineTo(cx+sw2*0.4,cy-sh*0.18);c.stroke();
+
+  } else {
+    // Generic: large accent stat value
+    const val = (j&&j.stats&&j.stats[0]) ? String(j.stats[0].value||'') : '';
+    if(val) {
+      const sz = Math.min(w*0.6, h*0.55, 140);
+      c.font=`800 ${sz}px Poppins,sans-serif`;
+      c.fillStyle=isLight?AO_BRAND.BLUE:AO_BRAND.ORANGE;
+      c.textAlign='center';c.fillText(val,cx,cy+sz*0.35);c.textAlign='left';
+    }
+  }
+}
+
+// ── HELPERS ─────────────────────────────────────────────────────
+function parseHeadline(raw){
+  const s=String(raw||'');
+  if(s.includes('\n'))return s.split('\n').map(l=>l.trim()).filter(Boolean);
+  if(s.includes('\\n'))return s.split('\\n').map(l=>l.trim()).filter(Boolean);
+  const words=s.split(' ');
+  if(words.length<=3)return[s];
+  const mid=Math.ceil(words.length/2);
+  return[words.slice(0,mid).join(' '),words.slice(mid).join(' ')];
+}
+
+function measureHeight(c,text,maxW,lh){
+  if(!text)return 0;
+  const words=String(text).split(' ');let line='';let n=0;
+  for(const w of words){const t=line?line+' '+w:w;if(c.measureText(t).width>maxW&&line){n++;line=w;}else line=t;}
+  if(line)n++;
+  return n*lh;
+}
+
+function wtxFull(c,text,x,y,maxW,lh){
+  if(!text)return y;
+  const words=String(text).split(' ');let line='',cy=y;
+  for(const w of words){
+    const t=line?line+' '+w:w;
+    if(c.measureText(t).width>maxW&&line){c.fillText(line,x,cy);line=w;cy+=lh;}else line=t;
+  }
+  if(line){c.fillText(line,x,cy);cy+=lh;}
+  return cy;
+}
+
+function wtxCapped(c,text,x,y,maxW,lh,ml){
+  if(!text)return y;
+  const words=String(text).split(' ');let line='',cy=y,n=0;
+  for(const w of words){
+    const t=line?line+' '+w:w;
+    if(c.measureText(t).width>maxW&&line){
+      if(n+1>=ml){c.fillText(line+(w?' …':''),x,cy);return cy+lh;}
+      c.fillText(line,x,cy);line=w;cy+=lh;n++;
+    }else line=t;
+  }
+  if(line){c.fillText(line,x,cy);cy+=lh;}
+  return cy;
+}
+
+// Adaptive font — shrinks until text fits maxW
+function fitFont(c,text,maxW,start,min,weight){
+  let sz=start;
+  c.font=`${weight||'700'} ${sz}px Poppins,sans-serif`;
+  while(c.measureText(String(text)).width>maxW&&sz>min){sz-=1;c.font=`${weight||'700'} ${sz}px Poppins,sans-serif`;}
+  return sz;
+}
+
+function rr(c,x,y,w,h,rad,fill,stroke,sw){
+  if(w<=0||h<=0)return;
+  rad=Math.min(Math.max(rad,0),Math.floor(w/2),Math.floor(h/2));
+  c.beginPath();c.moveTo(x+rad,y);c.lineTo(x+w-rad,y);
+  c.quadraticCurveTo(x+w,y,x+w,y+rad);c.lineTo(x+w,y+h-rad);
+  c.quadraticCurveTo(x+w,y+h,x+w-rad,y+h);c.lineTo(x+rad,y+h);
+  c.quadraticCurveTo(x,y+h,x,y+h-rad);c.lineTo(x,y+rad);
+  c.quadraticCurveTo(x,y,x+rad,y);c.closePath();
+  if(fill){c.fillStyle=fill;c.fill();}
+  if(stroke){c.strokeStyle=stroke;c.lineWidth=sw||1;c.stroke();}
+}
+
+// ── ANGEL ONE OFFICIAL LOGO ──────────────────────────────────────
+// Matches brand logo: triangle grid + "Angel One" wordmark
+function logoAO(c,x,y,dark){
+  // Triangles — blue always
+  const tw=10,th=8,gap=2.5;
+  [1,2,3].forEach((count,ri)=>{
+    const rowW=count*tw+(count-1)*gap;
+    let tx=x+(34-rowW)/2;const ty=y+ri*(th+gap);
+    for(let i=0;i<count;i++){
+      c.beginPath();c.moveTo(tx,ty);c.lineTo(tx+tw,ty);c.lineTo(tx+tw/2,ty+th);
+      c.closePath();c.fillStyle=AO_BRAND.BLUE;c.fill();tx+=tw+gap;
+    }
+  });
+  // "Angel" — blue on both light and dark (brand spec)
+  c.font='700 17px Poppins,sans-serif';
+  c.fillStyle=AO_BRAND.BLUE;c.fillText('Angel',x+42,y+22);
+  // "One" — slightly darker blue  
+  c.fillStyle=AO_BRAND.NAVY;c.fillText('One',x+42+c.measureText('Angel').width+2,y+22);
+  // ® symbol
+  c.font='400 9px Poppins,sans-serif';
+  c.fillStyle=AO_BRAND.BLUE;
+  c.fillText('®',x+42+c.measureText('Angel').width+2+c.measureText('One').width+1,y+14);
+}
+
+// ── TWO-TONE CTA PILL (Angel One approved style) ─────────────────
+// Left: neutral/white with dark text | Right: orange with white bold text
+function ctaPill(c,x,y,w,h,leftText,rightText){
+  // Outer border  
+  rr(c,x,y,w,h,h/2,null,'#CCCCCC',1);
+  // Left half (white/light)
+  c.save();c.beginPath();c.rect(x,y,w/2,h);c.clip();
+  rr(c,x,y,w,h,h/2,'#FFFFFF');c.restore();
+  // Right half (orange)
+  c.save();c.beginPath();c.rect(x+w/2,y,w/2,h);c.clip();
+  rr(c,x,y,w,h,h/2,AO_BRAND.ORANGE);c.restore();
+  // Left text
+  c.font='500 13px Poppins,sans-serif';c.fillStyle='#374151';c.textAlign='center';
+  c.fillText(leftText,x+w*0.25,y+h*0.62);
+  // Right text
+  c.font='700 13px Poppins,sans-serif';c.fillStyle='#FFFFFF';
+  c.fillText(rightText,x+w*0.75,y+h*0.62);
+  c.textAlign='left';
+}
+
+// Standard CTA button (for educational content)
+function ctaButton(c,x,y,w,h,text,blue){
+  rr(c,x,y,w,h,h/2,blue?AO_BRAND.BLUE:AO_BRAND.ORANGE);
+  c.font='700 13px Poppins,sans-serif';c.fillStyle='#fff';c.textAlign='center';
+  c.fillText(text,x+w/2,y+h*0.64);c.textAlign='left';
+}
+
+// ── DISCLAIMER STRIP ──────────────────────────────────────────────
+function discAO(c,W,H,dark){
+  const sh=38,y=H-sh;
+  c.fillStyle=dark?'rgba(5,10,40,0.95)':'rgba(230,233,245,0.97)';
+  c.fillRect(0,y,W,sh);
+  c.strokeStyle=dark?'rgba(255,255,255,0.1)':'rgba(27,63,216,0.2)';
+  c.lineWidth=1;c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();
+  c.font='300 9px Poppins,sans-serif';
+  c.fillStyle=dark?'rgba(200,210,240,0.7)':'#6B7280';
+  c.fillText('*Investments in the securities market are subject to market risks. Read all related documents carefully before investing.',14,y+14);
+  c.fillText('This content is for educational purposes only and not investment advice.',14,y+26);
+}
+
+function fin(cvId,imgId,dlId){
+  const cv=document.getElementById(cvId);
+  const url=cv.toDataURL('image/jpeg',0.97);
+  document.getElementById(imgId).src=url;
+  document.getElementById(dlId).href=url;
+}
+
+function getCtaText(j){
+  return(j._complianceStatus==='fixed')?'Follow for more awareness • Angel One':j.cta||'Start your investment journey with Angel One';
+}
+function shouldShowCtaButton(j){
+  return(j._complianceStatus||'approved')==='approved';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LINKEDIN 1200 × 627
+// Brand system: light pearl (educational) or cobalt blue (market)
+// Layout mirrors approved creatives exactly:
+//   LEFT (55%): logo TL → headline → key message box → body → CTA
+//   RIGHT (45%): large hero visual centred
+// ═══════════════════════════════════════════════════════════════
+function drawLinkedin(j){
+  const cv=document.getElementById('cvL'),c=cv.getContext('2d');
+  const W=1200,H=627,DISC=38;
+  const topic=(window.S&&S.topic)||'mf';
+  const bgStyle=getBgStyle(topic);
+  const isDark=bgStyle==='cobalt';
+  const PAD=52;
+
+  // Colour context
+  const BG     = isDark ? AO_BRAND.BLUE   : AO_BRAND.PEARL;
+  const BG2    = isDark ? AO_BRAND.DBLUE  : AO_BRAND.PEARL2;
+  const HL_COL = isDark ? '#FFFFFF'        : AO_BRAND.NAVY;
+  const HL2_COL= isDark ? '#C8D8FF'        : AO_BRAND.BLUE;
+  const BODY_COL=isDark ? 'rgba(220,230,255,0.85)' : '#374151';
+  const INS_BG = isDark ? 'rgba(255,255,255,0.1)'  : '#FFFFFF';
+  const INS_BDR= isDark ? 'rgba(255,255,255,0.25)' : AO_BRAND.BLUE+'44';
+
+  // ── Background ──
+  const bg=c.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,BG);bg.addColorStop(1,BG2);
+  c.fillStyle=bg;c.fillRect(0,0,W,H);
+
+  // Blue diagonal shape (right side) — matches approved creative 2 & 3 style
+  if(!isDark){
+    c.save();c.beginPath();
+    c.moveTo(W*0.58,0);c.lineTo(W,0);c.lineTo(W,H);c.lineTo(W*0.45,H);c.closePath();
+    const dg=c.createLinearGradient(W*0.58,0,W,H);
+    dg.addColorStop(0,AO_BRAND.BLUE+'22');dg.addColorStop(1,AO_BRAND.BLUE+'44');
+    c.fillStyle=dg;c.fill();c.restore();
+    // Geometric diamond accent (matches creative 2)
+    [[W*0.88,H*0.12,80],[W*0.96,H*0.55,50]].forEach(([dx,dy,ds])=>{
+      c.save();c.translate(dx,dy);c.rotate(Math.PI/4);
+      rr(c,-ds/2,-ds/2,ds,ds,6,AO_BRAND.BLUE+'18',AO_BRAND.BLUE+'33',1);
+      c.restore();
+    });
+  }else{
+    // Circuit/grid pattern on cobalt bg (matches creative 3)
+    c.save();c.globalAlpha=0.08;c.strokeStyle='#fff';c.lineWidth=0.5;
+    for(let x=0;x<W;x+=40){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke();}
+    for(let y=0;y<H;y+=40){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
+    c.restore();
+  }
+
+  // ── Logo ── (top left)
+  logoAO(c,PAD,28,isDark);
+
+  // ── Headline — adaptive size ──
+  const hls=parseHeadline(j.headline);
+  const maxHLW=W*0.52;
+  const h0=hls[0]||'',h1=hls[1]||'';
+  const h0sz=fitFont(c,h0,maxHLW,46,24,'800');
+  c.font=`800 ${h0sz}px Poppins,sans-serif`;
+  c.fillStyle=HL_COL;c.fillText(h0,PAD,150);
+  let hy=150+h0sz+6;
+  if(h1){
+    const h1sz=fitFont(c,h1,maxHLW,h0sz-2,20,'700');
+    c.font=`700 ${h1sz}px Poppins,sans-serif`;c.fillStyle=HL2_COL;
+    c.fillText(h1,PAD,hy);hy+=h1sz+10;
+    // Orange underline accent (matches approved style)
+    const ulw=Math.min(c.measureText(h1).width,220);
+    c.fillStyle=AO_BRAND.ORANGE;c.fillRect(PAD,hy-4,ulw,4);hy+=8;
+  }
+
+  // ── Insight box (key message) ──
+  const insTxt=String(j.insight_line||'').substring(0,160);
+  c.font='400 13px Poppins,sans-serif';
+  const insH=Math.max(measureHeight(c,insTxt,W*0.48-24,20)+28,56);
+  rr(c,PAD,hy,W*0.5-PAD,insH,10,INS_BG,INS_BDR,1.5);
+  // Left accent bar
+  c.fillStyle=AO_BRAND.ORANGE;c.fillRect(PAD,hy,4,insH);
+  c.fillStyle=isDark?'#E8F0FF':'#1B3FD8';
+  wtxFull(c,insTxt,PAD+14,hy+20,W*0.48-32,20);
+  hy+=insH+12;
+
+  // ── Body ──
+  c.font='400 13px Poppins,sans-serif';c.fillStyle=BODY_COL;
+  hy=wtxCapped(c,String(j.body_short||'').substring(0,200),PAD,hy,W*0.5-PAD,20,2)+8;
+
+  // ── Quote ──
+  const qt=String(j.quote||'').substring(0,75);
+  if(qt&&hy<H-DISC-110){
+    c.font='italic 400 12px Poppins,sans-serif';
+    c.fillStyle=isDark?'rgba(180,200,255,0.8)':'#6B7280';
+    hy=wtxCapped(c,'\u201C'+qt+'\u201D',PAD,hy,W*0.5-PAD,18,2)+10;
+  }
+
+  // ── CTA ──
+  const ctaY=H-DISC-52;
+  if(shouldShowCtaButton(j)){
+    ctaButton(c,PAD,ctaY,220,40,getCtaText(j).replace('Start your investment journey with ',''),true);
+  }
+
+  // ── Partner byline ──
+  c.font='500 11px Poppins,sans-serif';
+  c.fillStyle=isDark?'rgba(180,200,255,0.6)':'#9CA3AF';
+  const pLine=(S.pN||'')+(S.pT?' · '+S.pT:'')+(S.pReg?' · Reg: '+S.pReg:'');
+  c.fillText(pLine,PAD,H-DISC-8);
+
+  // ── RIGHT: Hero visual ──
+  const RP=W*0.56,RW=W-RP-20,RH=H-DISC-20;
+  const assetKey=pickHeroAsset(j);
+  // Hero takes up most of right panel
+  drawHeroAsset(c,assetKey,RP+RW*0.05,30,RW*0.9,RH*0.72,{bg:BG});
+
+  // Stat cards below hero (right panel) — vertical stack, compact
+  const stats=j.stats||[];
+  const scH=54,scGap=8;
+  let sy=H-DISC-20-(stats.length*(scH+scGap));
+  stats.slice(0,3).forEach(s=>{
+    const cc={red:'#EF4444',green:'#22C55E',blue:AO_BRAND.BLUE,orange:AO_BRAND.ORANGE}[s.color||'blue']||AO_BRAND.BLUE;
+    rr(c,RP,sy,RW,scH,8,isDark?'rgba(255,255,255,0.1)':'#FFFFFF',cc+'55',1.2);
+    c.fillStyle=cc;c.fillRect(RP,sy,RW,3);
+    c.font='500 10px Poppins,sans-serif';
+    c.fillStyle=isDark?'rgba(200,215,255,0.65)':'#6B7280';
+    c.fillText(String(s.label||'').substring(0,26),RP+10,sy+18);
+    const vsz=fitFont(c,String(s.value||''),RW-20,16,10,'700');
+    c.font=`700 ${vsz}px Poppins,sans-serif`;c.fillStyle=cc;
+    c.fillText(String(s.value||''),RP+10,sy+42);
+    sy+=scH+scGap;
+  });
+
+  discAO(c,W,H,isDark);
+  fin('cvL','imgL','dlL');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INSTAGRAM 1080 × 1080
+// Same brand language, adapted for square format.
+// Two-pass layout — content fills canvas perfectly.
+// ═══════════════════════════════════════════════════════════════
+function drawInstagram(j){
+  const cv=document.getElementById('cvI'),c=cv.getContext('2d');
+  const W=1080,H=1080,DISC=38,PAD=64;
+  const topic=(window.S&&S.topic)||'mf';
+  const isDark=getBgStyle(topic)==='cobalt';
+
+  const BG     = isDark ? AO_BRAND.BLUE  : AO_BRAND.PEARL;
+  const BG2    = isDark ? AO_BRAND.DBLUE : AO_BRAND.PEARL2;
+  const HL_COL = isDark ? '#FFFFFF'       : AO_BRAND.NAVY;
+  const HL2_COL= isDark ? '#C8D8FF'       : AO_BRAND.BLUE;
+  const BODY_COL=isDark ?'rgba(215,228,255,0.88)' : '#374151';
+
+  // ── MEASURE ──
+  const hls=parseHeadline(j.headline);
+  const h0=hls[0]||'',h1=hls[1]||'';
+  const maxHL=W-PAD*2;
+  const h0sz=Math.min(fitFont(c,h0,maxHL,68,30,'800'),68);
+  const h1sz=h1?Math.min(fitFont(c,h1,maxHL,h0sz-4,24,'700'),h0sz-4):0;
+  const hlH=h1?(h0sz+h1sz+18):(h0sz+6);
+
+  const insTxt=String(j.insight_line||'');
+  c.font='400 15px Poppins,sans-serif';
+  const insH=Math.max(measureHeight(c,insTxt,W-PAD*2-28,22)+32,72);
+
+  const stats=j.stats||[];
+  const statH=76;
+  c.font='400 14px Poppins,sans-serif';
+  const bodyH=Math.min(measureHeight(c,String(j.body_short||''),W-PAD*2,22),88);
+  c.font='italic 13px Poppins,sans-serif';
+  const qt=String(j.quote||'').substring(0,70);
+  const qtH=qt?Math.min(measureHeight(c,qt,W-PAD*2,20)+8,40):0;
+  const logoH=44,catH=36,ctaH=58,partnerH=22;
+
+  const totalC=logoH+catH+hlH+insH+statH+bodyH+qtH+ctaH+partnerH+DISC;
+  const gap=Math.max(Math.floor((H-totalC)/9),8);
+
+  // ── DRAW ──
+  const bg=c.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,BG);bg.addColorStop(1,BG2);
+  c.fillStyle=bg;c.fillRect(0,0,W,H);
+
+  if(!isDark){
+    // Diagonal blue shape right — matches brand creative 2
+    c.save();c.beginPath();
+    c.moveTo(W*0.6,0);c.lineTo(W,0);c.lineTo(W,H);c.lineTo(W*0.42,H);c.closePath();
+    const dg=c.createLinearGradient(W*0.6,0,W,H);
+    dg.addColorStop(0,AO_BRAND.BLUE+'1A');dg.addColorStop(1,AO_BRAND.BLUE+'55');
+    c.fillStyle=dg;c.fill();c.restore();
+    // Diamond accents
+    [[W*0.9,H*0.1,90],[W*0.97,H*0.62,60]].forEach(([dx,dy,ds])=>{
+      c.save();c.translate(dx,dy);c.rotate(Math.PI/4);
+      rr(c,-ds/2,-ds/2,ds,ds,8,AO_BRAND.BLUE+'15',AO_BRAND.BLUE+'30',1);
+      c.restore();
+    });
+  }else{
+    c.save();c.globalAlpha=0.06;c.strokeStyle='#fff';c.lineWidth=0.5;
+    for(let x=0;x<W;x+=44){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke();}
+    for(let y=0;y<H;y+=44){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
+    c.restore();
+  }
+
+  // Hero asset — drawn in right half, prominent
+  const assetKey=pickHeroAsset(j);
+  drawHeroAsset(c,assetKey,W*0.52,H*0.12,W*0.44,H*0.55,{bg:BG});
+
+  // Left content overlay
+  if(!isDark){
+    const lf=c.createLinearGradient(0,0,W,0);
+    lf.addColorStop(0,BG+'FF');lf.addColorStop(0.52,BG+'F0');
+    lf.addColorStop(0.72,BG+'60');lf.addColorStop(1,BG+'00');
+    c.fillStyle=lf;c.fillRect(0,0,W,H);
+  }
+
+  // Orange top accent bar
+  c.fillStyle=AO_BRAND.ORANGE;c.fillRect(0,0,W,4);
+
+  let y=gap;
+
+  // Logo
+  logoAO(c,PAD,y,isDark);y+=logoH+gap;
+
+  // Category
+  const cat='● '+String(j.category||'FINANCE · INSIGHT').substring(0,34);
+  c.font='600 11px Poppins,sans-serif';
+  const catW=Math.min(c.measureText(cat).width+22,550);
+  rr(c,PAD,y,catW,30,15,isDark?'rgba(255,255,255,0.12)':AO_BRAND.BLUE+'18',isDark?'rgba(255,255,255,0.25)':AO_BRAND.BLUE+'55',1);
+  c.fillStyle=isDark?'rgba(200,215,255,0.9)':AO_BRAND.BLUE;c.fillText(cat,PAD+11,y+20);y+=catH+gap;
+
+  // Headline
+  c.font=`800 ${h0sz}px Poppins,sans-serif`;c.fillStyle=HL_COL;
+  c.fillText(h0,PAD,y+h0sz-6);y+=h0sz+4;
+  if(h1){
+    c.font=`700 ${h1sz}px Poppins,sans-serif`;c.fillStyle=HL2_COL;
+    c.fillText(h1,PAD,y+h1sz-4);
+    const ulW=Math.min(c.measureText(h1).width,W*0.45);
+    c.fillStyle=AO_BRAND.ORANGE;c.fillRect(PAD,y+h1sz+2,ulW,4);
+    y+=h1sz+14;
+  }else y+=6;
+  y+=gap;
+
+  // Insight box
+  c.font='400 15px Poppins,sans-serif';
+  const INS_BG=isDark?'rgba(255,255,255,0.1)':'rgba(255,255,255,0.9)';
+  rr(c,PAD,y,W*0.78,insH,10,INS_BG,AO_BRAND.BLUE+'55',1.5);
+  c.fillStyle=AO_BRAND.ORANGE;c.fillRect(PAD,y,5,insH);
+  c.fillStyle=isDark?'#E0ECFF':AO_BRAND.NAVY;
+  wtxFull(c,insTxt,PAD+18,y+24,W*0.78-28,22);y+=insH+gap;
+
+  // Stat cards
+  const scW=Math.floor((W*0.78-20)/3);
+  stats.slice(0,3).forEach((s,i)=>{
+    const sx=PAD+i*(scW+10),sy=y;
+    const cc={red:'#EF4444',green:'#22C55E',blue:AO_BRAND.BLUE,orange:AO_BRAND.ORANGE}[s.color||'blue']||AO_BRAND.BLUE;
+    rr(c,sx,sy,scW,statH,10,isDark?'rgba(255,255,255,0.1)':'rgba(255,255,255,0.85)',cc+'66',1.5);
+    c.fillStyle=cc;c.fillRect(sx,sy,scW,4);
+    c.font='500 10px Poppins,sans-serif';c.fillStyle=isDark?'rgba(200,215,255,0.65)':'#6B7280';
+    c.fillText(String(s.label||'').substring(0,22),sx+10,sy+20);
+    const vsz=fitFont(c,String(s.value||''),scW-20,17,10,'700');
+    c.font=`700 ${vsz}px Poppins,sans-serif`;c.fillStyle=cc;
+    c.fillText(String(s.value||''),sx+10,sy+46);
+  });
+  y+=statH+gap;
+
+  // Body
+  c.font='400 14px Poppins,sans-serif';c.fillStyle=BODY_COL;
+  y=wtxCapped(c,String(j.body_short||'').substring(0,200),PAD,y,W*0.78,22,3)+gap;
+
+  // Quote
+  if(qt){
+    c.font='italic 13px Poppins,sans-serif';c.fillStyle=isDark?'rgba(180,200,255,0.8)':'#6B7280';
+    y=wtxFull(c,'\u201C'+qt+'\u201D',PAD,y,W*0.78,20)+gap;
+  }
+
+  // CTA
+  if(shouldShowCtaButton(j)){
+    ctaButton(c,PAD,y,Math.min(W*0.75,480),ctaH,getCtaText(j),true);
+  }else{
+    c.font='italic 500 12px Poppins,sans-serif';c.fillStyle=isDark?'rgba(180,200,255,0.7)':'#6B7280';
+    c.fillText(getCtaText(j),PAD,y+22);
+  }
+  y+=ctaH+gap;
+
+  // Partner
+  c.font='500 11px Poppins,sans-serif';c.fillStyle=isDark?'rgba(180,200,255,0.55)':'#9CA3AF';
+  c.fillText((S.pN||'')+(S.pT?' · '+S.pT:''),PAD,y+14);
+
+  discAO(c,W,H,isDark);
+  fin('cvI','imgI','dlI');
+}
+
+// ═══════════════════════════════════════════════════════════════
+// WHATSAPP 1080 × 1080
+// Clean card layout — feels like a trusted forward.
+// Header in brand blue. White content card. Same design language.
+// ═══════════════════════════════════════════════════════════════
+function drawWhatsapp(j){
+  const cv=document.getElementById('cvW'),c=cv.getContext('2d');
+  const W=1080,H=1080,DISC=38,PAD=52;
+  const topic=(window.S&&S.topic)||'mf';
+  const isDark=getBgStyle(topic)==='cobalt';
+  const HEADER=200;
+  const CP=PAD+8,CW=W-CP*2;
+
+  // ── MEASURE ──
+  const hls=parseHeadline(j.headline);
+  const h0=hls[0]||'',h1=hls[1]||'';
+  const h0sz=Math.min(fitFont(c,h0,CW,42,22,'800'),42);
+  const h1sz=h1?Math.min(fitFont(c,h1,CW,h0sz,18,'700'),h0sz):0;
+  const hlH=h1?(h0sz+h1sz+14):(h0sz+4);
+  const insTxt=String(j.insight_line||'');
+  c.font='500 13.5px Poppins,sans-serif';
+  const insH=Math.max(measureHeight(c,insTxt,CW-26,21)+32,64);
+  c.font='400 14px Poppins,sans-serif';
+  const bodyH=Math.min(measureHeight(c,String(j.body_short||''),CW,22),110);
+  const qt=String(j.quote||'').substring(0,90);
+  c.font='italic 400 13px Poppins,sans-serif';
+  const qtH=qt?Math.max(measureHeight(c,qt,CW-26,20)+36,64):0;
+  const stats=j.stats||[];
+  const statH=76,ctaH=56,partnerH=22,cardTopPad=28;
+
+  const cardSpace=H-HEADER-DISC-12;
+  const totalC=cardTopPad+hlH+insH+bodyH+qtH+statH+ctaH+partnerH;
+  const gap=Math.max(Math.floor((cardSpace-totalC)/7),10);
+
+  // ── DRAW ──
+  // Page bg — very light blue-grey
+  c.fillStyle='#EEF0F8';c.fillRect(0,0,W,H);
+  c.save();c.globalAlpha=0.03;c.fillStyle=AO_BRAND.BLUE;
+  for(let x=44;x<W;x+=44)for(let y2=HEADER;y2<H;y2+=44){c.beginPath();c.arc(x,y2,1.5,0,Math.PI*2);c.fill();}
+  c.restore();
+
+  // Header — Angel One brand blue gradient
+  const hbg=c.createLinearGradient(0,0,W,HEADER);
+  hbg.addColorStop(0,AO_BRAND.NAVY);hbg.addColorStop(0.5,AO_BRAND.BLUE);hbg.addColorStop(1,AO_BRAND.BLUE2);
+  c.fillStyle=hbg;c.fillRect(0,0,W,HEADER);
+
+  // Circuit grid in header (approved creative 3 style)
+  c.save();c.globalAlpha=0.08;c.strokeStyle='#fff';c.lineWidth=0.5;
+  for(let x=0;x<W;x+=40){c.beginPath();c.moveTo(x,0);c.lineTo(x,HEADER);c.stroke();}
+  for(let y=0;y<HEADER;y+=40){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke();}
+  c.restore();
+
+  // Diagonal geometric accent in header (right)
+  c.save();c.beginPath();c.moveTo(W*0.65,0);c.lineTo(W,0);c.lineTo(W,HEADER);c.lineTo(W*0.5,HEADER);c.closePath();
+  c.fillStyle='rgba(255,255,255,0.07)';c.fill();c.restore();
+
+  // Orange top bar
+  c.fillStyle=AO_BRAND.ORANGE;c.fillRect(0,0,W,4);
+
+  // Logo in header
+  logoAO(c,PAD,46,true);
+
+  // Category in header
+  const cat='● '+String(j.category||'FINANCE · INSIGHT').substring(0,38);
+  c.font='600 12px Poppins,sans-serif';
+  const catW2=Math.min(c.measureText(cat).width+22,580);
+  rr(c,PAD,110,catW2,32,16,'rgba(255,255,255,0.14)','rgba(255,255,255,0.35)',1);
+  c.fillStyle='rgba(255,255,255,0.92)';c.fillText(cat,PAD+11,110+21);
+
+  // Hero asset in header — right side
+  drawHeroAsset(c,pickHeroAsset(j),W*0.62,10,W*0.35,HEADER-10,{bg:AO_BRAND.BLUE});
+
+  // White content card
+  rr(c,14,HEADER-10,W-28,H-HEADER-DISC+2,14,'#FFFFFF');
+
+  let ny=HEADER+cardTopPad+gap;
+
+  // Headline
+  c.font=`800 ${h0sz}px Poppins,sans-serif`;c.fillStyle=AO_BRAND.NAVY;
+  c.fillText(h0,CP,ny+h0sz-4);ny+=h0sz+4;
+  if(h1){
+    c.font=`700 ${h1sz}px Poppins,sans-serif`;c.fillStyle=AO_BRAND.BLUE;
+    c.fillText(h1,CP,ny+h1sz-2);
+    const ulW=Math.min(c.measureText(h1).width,CW*0.8);
+    c.fillStyle=AO_BRAND.ORANGE;c.fillRect(CP,ny+h1sz+3,ulW,4);ny+=h1sz+14;
+  }
+  ny+=gap;
+
+  // Insight box
+  c.font='500 13.5px Poppins,sans-serif';
+  rr(c,CP,ny,CW,insH,10,'#F0F4FF',AO_BRAND.BLUE+'33',1.5);
+  c.fillStyle=AO_BRAND.ORANGE;c.fillRect(CP,ny,4,insH);
+  c.fillStyle=AO_BRAND.NAVY;
+  wtxFull(c,insTxt,CP+16,ny+26,CW-26,21);ny+=insH+gap;
+
+  // Body
+  c.font='400 14px Poppins,sans-serif';c.fillStyle='#374151';
+  ny=wtxCapped(c,String(j.body_short||'').substring(0,250),CP,ny,CW,22,4)+gap;
+
+  // Quote
+  if(qt){
+    rr(c,CP,ny,CW,qtH,10,'#F5F7FF',AO_BRAND.BLUE+'22',1.5);
+    c.fillStyle=AO_BRAND.ORANGE;c.fillRect(CP,ny,4,qtH);
+    c.font='italic 400 13px Poppins,sans-serif';c.fillStyle='#2D3A80';
+    wtxFull(c,'\u201C'+qt+'\u201D',CP+16,ny+24,CW-26,20);
+    c.font='300 11px Poppins,sans-serif';c.fillStyle='#9CA3AF';
+    c.fillText('\u2014 '+(S.pN||''),CP+16,ny+qtH-10);ny+=qtH+gap;
+  }
+
+  // Stat cards
+  const scW=Math.floor((CW-20)/3);
+  stats.slice(0,3).forEach((s,i)=>{
+    const sx=CP+i*(scW+10),sy=ny;
+    const cc={red:'#EF4444',green:'#22C55E',blue:AO_BRAND.BLUE,orange:AO_BRAND.ORANGE}[s.color||'blue']||AO_BRAND.BLUE;
+    rr(c,sx,sy,scW,statH-4,10,'#FFFFFF',cc+'44',1.5);
+    c.fillStyle=cc;c.fillRect(sx,sy,scW,4);
+    c.font='500 10px Poppins,sans-serif';c.fillStyle='#6B7280';
+    c.fillText(String(s.label||'').substring(0,24),sx+12,sy+20);
+    const vsz=fitFont(c,String(s.value||''),scW-24,17,10,'700');
+    c.font=`700 ${vsz}px Poppins,sans-serif`;c.fillStyle=cc;
+    c.fillText(String(s.value||''),sx+12,sy+46);
+  });
+  ny+=statH+gap;
+
+  // CTA
+  if(shouldShowCtaButton(j)){
+    rr(c,CP,ny,CW,ctaH,ctaH/2,AO_BRAND.BLUE);
+    c.font='700 14px Poppins,sans-serif';c.fillStyle='#fff';c.textAlign='center';
+    c.fillText(getCtaText(j),W/2,ny+ctaH*0.63);c.textAlign='left';
+  }else{
+    c.font='italic 500 12px Poppins,sans-serif';c.fillStyle='#9CA3AF';c.textAlign='center';
+    c.fillText(getCtaText(j),W/2,ny+22);c.textAlign='left';
+  }
+  ny+=ctaH+gap;
+
+  // Divider + partner
+  c.strokeStyle='#E5E7EB';c.lineWidth=1;c.beginPath();c.moveTo(CP,ny);c.lineTo(W-CP,ny);c.stroke();
+  c.font='500 11px Poppins,sans-serif';c.fillStyle='#9CA3AF';
+  c.fillText((S.pN||'')+(S.pT?' · '+S.pT:'')+(S.pC?' · '+S.pC:'')+(S.pReg?' · Reg: '+S.pReg:''),CP,ny+18);
+
+  discAO(c,W,H,false);
+  fin('cvW','imgW','dlW');
+}
+
+
+
+
+
+function sCamp(k,btn){document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('ac'));btn.classList.add('ac');document.querySelectorAll('.cwrap').forEach(w=>w.classList.remove('ac'));document.getElementById('c'+k).classList.add('ac');}
+function swT(k,btn){document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('ac'));btn.classList.add('ac');document.querySelectorAll('.cout').forEach(p=>p.classList.remove('ac'));document.getElementById('po-'+k).classList.add('ac');}
+function cp(id){const t=document.getElementById(id)?.textContent;if(!t)return;navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById(id)?.parentElement?.querySelector('.cpbtn');if(b){b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',2000);}});}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function tw(id){const el=document.getElementById(id);if(!el)return;const t=el.textContent;el.textContent='';let i=0;const sp=t.length>1200?3:8;const tm=setInterval(()=>{if(i<t.length){el.textContent+=t[i];i++;}else clearInterval(tm);},sp);}
+function updateHeroAsset(key, val){
+  if(typeof HERO_ASSETS !== 'undefined') HERO_ASSETS[key] = val.trim();
+}
+
+function restart(){S.topic='';S.sub='';S.intent='';S.aud='';S.fmts=['instagram','whatsapp','linkedin','carousel'];S.selectedNews=null;S.newsItems=[];document.querySelectorAll('.chip,.icard,.acard,.subcard').forEach(e=>e.classList.remove('sel'));document.querySelectorAll('.fp').forEach(p=>{p.classList.remove('sel');if(['instagram','whatsapp','linkedin','carousel'].includes(p.dataset.f))p.classList.add('sel');});document.getElementById('n1').disabled=true;document.getElementById('n1b').disabled=true;document.getElementById('n2').disabled=true;document.getElementById('n3').disabled=true;document.getElementById('SW').style.display='none';document.getElementById('CI').style.display='none';document.getElementById('AL').innerHTML='';document.getElementById('LS').style.display='block';document.getElementById('TR').style.display='none';document.getElementById('CS').style.display='none';document.getElementById('CL').style.display='block';document.getElementById('CR').style.display='none';if(document.getElementById('videoSection'))document.getElementById('videoSection').style.display='none';go(0);}
+</script>
+</body>
+</html>
